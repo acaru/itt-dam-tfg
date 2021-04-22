@@ -4,65 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity">
-
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/etUserLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    tools:context=".activities.RegisterEmpresaActivity">
 
     <EditText
-        android:id="@+id/etUserLogin"
+        android:id="@+id/etPeluqueria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="email"
+        android:hint="Nombre Peluqueria"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etPasswordLogin"
+        app:layout_constraintBottom_toTopOf="@+id/etUbicacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etPasswordLogin"
+        android:id="@+id/etUbicacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="contraseña"
+        android:hint="Ubicacion"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btLogin"
+        app:layout_constraintBottom_toTopOf="@+id/etPeluquero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUserLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/etPeluqueria" />
 
-    <Button
-        android:id="@+id/btLogin"
+    <EditText
+        android:id="@+id/etPeluquero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/btRegisterLogin"
+        android:ems="10"
+        android:hint="Usuario Admin"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etContraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/etUbicacion" />
 
-    <Button
-        android:id="@+id/btRegisterLogin"
+    <EditText
+        android:id="@+id/etContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btRegistrarEmpresaEmpresa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPeluquero" />
+
+    <Button
+        android:id="@+id/btCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eres cliente Registrate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btRegistrarEmpresaEmpresa" />
+
+    <Button
+        android:id="@+id/btRegistrarEmpresaEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        app:layout_constraintBottom_toTopOf="@+id/btCliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContraseña" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
