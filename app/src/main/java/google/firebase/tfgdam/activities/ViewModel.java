@@ -12,7 +12,7 @@ public class ViewModel {
         while(cont < 30){
             lista.add(String.valueOf(cont));
             cont++;
-            Log.d("check", "lista");
+            Log.d("aa", "lista");
         }
         return lista;
 

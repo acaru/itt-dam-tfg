@@ -1,10 +1,10 @@
 package google.firebase.tfgdam.activities;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
 
 import google.firebase.tfgdam.R;
 
@@ -18,7 +18,7 @@ public class RecyclerPeluqueriasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_peluquerias);
 
         Log.d("check", "Ha entrado");
-        PeluqueriaAdapter peluqueriaAdapter = new PeluqueriaAdapter(this.getApplicationContext());
+        google.firebase.tfgdam.activities.PeluqueriaAdapter peluqueriaAdapter = new google.firebase.tfgdam.activities.PeluqueriaAdapter(this.getApplicationContext());
         peluqueriaAdapter.setData(ViewModel.getLista());
         rvPeluquerias = findViewById(R.id.rvPeluquerias);
         rvPeluquerias.setAdapter(peluqueriaAdapter);

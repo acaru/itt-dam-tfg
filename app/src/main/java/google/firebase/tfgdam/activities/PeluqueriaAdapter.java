@@ -26,7 +26,7 @@ public class PeluqueriaAdapter extends RecyclerView.Adapter<PeluqueriaAdapter.Pe
         notifyDataSetChanged();
         this.context = context;
         inflater = LayoutInflater.from(context);
-        Log.d("check", "Adapter");
+        Log.d("aaa", "Adapter");
     }
 
     public void setData(ArrayList<String> lista){
@@ -50,7 +50,7 @@ public class PeluqueriaAdapter extends RecyclerView.Adapter<PeluqueriaAdapter.Pe
 
     @Override
     public int getItemCount() {
-        Log.d("check", "Tamaño lista: " + lista.size());
+        Log.d("aaa", "Tamaño lista: " + lista.size());
         int elementos = 0;
         if (lista != null){
             elementos = lista.size();
@@ -71,7 +71,7 @@ public class PeluqueriaAdapter extends RecyclerView.Adapter<PeluqueriaAdapter.Pe
             ivPeluqueria = itemView.findViewById(R.id.ivPeluqueria);
             tvNombrePeluqueria = itemView.findViewById(R.id.tvNombrePeluqueria);
             tvUbicacion = itemView.findViewById(R.id.tvUbicacion);
-            Log.d("check", "ViewHolder");
+            Log.d("aaaa", "ViewHolder");
         }
     }
 }

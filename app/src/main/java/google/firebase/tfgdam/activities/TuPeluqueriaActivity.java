@@ -1,8 +1,8 @@
 package google.firebase.tfgdam.activities;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 import google.firebase.tfgdam.R;
 
