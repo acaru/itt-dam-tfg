@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import google.firebase.tfgdam.R;
+import google.firebase.tfgdam.activities.recyclers.RecyclerPeluqueriasActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

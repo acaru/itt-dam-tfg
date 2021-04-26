@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class Peluquero implements Serializable {
 
     private int id;
+    private int idPeluqueria;
     private String nombrePeluquero;
-    private String ubicacion;
 
     public Peluquero() {
-        this(-1, null, null);
+        this(-1,  -1, null, null);
     }
 
-    public Peluquero(int id, String nombrePeluquero, String ubicacion) {
+    public Peluquero(int id, int idPeluqueria, String nombrePeluquero, String ubicacion) {
         this.id = id;
+        this.idPeluqueria = idPeluqueria;
         this.nombrePeluquero = nombrePeluquero;
-        this.ubicacion = ubicacion;
     }
 
     public int getId() {
@@ -26,6 +26,14 @@ public class Peluquero implements Serializable {
         this.id = id;
     }
 
+    public int getIdPeluqueria() {
+        return idPeluqueria;
+    }
+
+    public void setIdPeluqueria(int idPeluqueria) {
+        this.idPeluqueria = idPeluqueria;
+    }
+
     public String getNombrePeluquero() {
         return nombrePeluquero;
     }
@@ -34,20 +42,11 @@ public class Peluquero implements Serializable {
         this.nombrePeluquero = nombrePeluquero;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
     @Override
     public String toString() {
         return "Peluquero{" +
                 "id=" + id +
                 ", nombrePeluquero='" + nombrePeluquero + '\'' +
-                ", ubicacion='" + ubicacion + '\'' +
                 '}';
     }
 }
