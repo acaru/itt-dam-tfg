@@ -1,7 +1,9 @@
 package google.firebase.tfgdam.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import google.firebase.tfgdam.model.Cita;
 import google.firebase.tfgdam.model.Peluqueria;
 import google.firebase.tfgdam.model.Peluquero;
 import google.firebase.tfgdam.model.Servicio;
@@ -33,6 +35,15 @@ public class ViewModel {
             peluqueros.add(p);
         }
         return peluqueros;
+    }
+
+    public static ArrayList<Cita> getCitas(){
+        ArrayList<Cita> citas = new ArrayList<>();
+        for (int i=0;i<50;i++){
+            Cita c = new Cita(i, i, i, LocalDateTime.now(), i);
+            citas.add(c);
+        }
+        return  citas;
     }
 
 

@@ -1,12 +1,12 @@
 package google.firebase.tfgdam.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import google.firebase.tfgdam.R;
 import google.firebase.tfgdam.activities.recyclers.RecyclerPeluqueriasActivity;

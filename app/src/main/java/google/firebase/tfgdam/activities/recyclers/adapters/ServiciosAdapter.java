@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import google.firebase.tfgdam.R;
 import google.firebase.tfgdam.controller.ViewModel;
-import google.firebase.tfgdam.model.Peluqueria;
 import google.firebase.tfgdam.model.Servicio;
 
 public class ServiciosAdapter extends RecyclerView.Adapter<ServiciosAdapter.ServiciosViewHolder> {
@@ -23,7 +22,10 @@ public class ServiciosAdapter extends RecyclerView.Adapter<ServiciosAdapter.Serv
     private ArrayList<Servicio> lista;
     private LayoutInflater inflater;
     private Context context;
-    public ServiciosAdapter(Context context){
+    OnItemClickListener listener;
+
+    public ServiciosAdapter(Context context, OnItemClickListener listener){
+        this.listener = listener;
         lista = ViewModel.getServicios();
         notifyDataSetChanged();
         this.context = context;
@@ -32,7 +34,7 @@ public class ServiciosAdapter extends RecyclerView.Adapter<ServiciosAdapter.Serv
     }
 
     public interface OnItemClickListener{
-        void onItemClickListener(Peluqueria p);
+        void onItemClickListener(Servicio s);
     }
 
     public void setData(ArrayList<Servicio> lista){

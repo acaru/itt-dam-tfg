@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Cliente implements Serializable {
 
     private int id;
-    private int edad;
+    private String fechaNacimiento;
     private String nombre;
     private String email;
     private String contraseña;
@@ -13,12 +13,12 @@ public class Cliente implements Serializable {
     private char sexo;
 
     public Cliente(){
-        this(-1, -1, null, null, null, -1, 'z');
+        this(-1, "", null, null, null, -1, 'z');
     }
 
-    public Cliente(int id, int edad, String nombre, String email, String contraseña, int telefono, char sexo){
+    public Cliente(int id, String fechaNacimiento, String nombre, String email, String contraseña, int telefono, char sexo){
         this.id = id;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.contraseña = contraseña;
         this.telefono = telefono;
@@ -33,12 +33,12 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getfechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setfechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getNombre() {
@@ -85,7 +85,7 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
-                ", edad=" + edad +
+                ", fechaNacimiento=" + fechaNacimiento +
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 ", contraseña='" + contraseña + '\'' +

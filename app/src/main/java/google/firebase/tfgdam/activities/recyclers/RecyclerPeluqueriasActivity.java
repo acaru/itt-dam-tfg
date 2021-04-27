@@ -26,7 +26,7 @@ public class RecyclerPeluqueriasActivity extends AppCompatActivity {
         final PeluqueriaAdapter peluqueriaAdapter = new PeluqueriaAdapter(this.getApplicationContext(), new PeluqueriaAdapter.OnItemClickListener() {
             @Override
             public void onClick(Peluqueria p) {
-                Intent intent = new Intent(google.firebase.tfgdam.activities.recyclers.RecyclerPeluqueriasActivity.this, google.firebase.tfgdam.activities.recyclers.ServiciosRecycler.class);
+                Intent intent = new Intent(RecyclerPeluqueriasActivity.this, ServiciosRecycler.class);
                 intent.putExtra("peluqueria", p);
                 startActivity(intent);
             }
