@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="google.firebase.tfgdam">
+    package="com.ITTDAM.bookncut">
 
     <application
         android:allowBackup="true"
@@ -8,13 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tfgdam">
-        <activity android:name=".activities.recyclers.ServiciosRecycler"></activity>
-        <activity android:name=".activities.recyclers.RecyclerPeluqueriasActivity" />
-        <activity android:name=".activities.TuPeluqueriaActivity" />
-        <activity android:name=".activities.RegisterEmpresaActivity" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.LoginActivity">
+        android:theme="@style/Theme.Bookncut">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

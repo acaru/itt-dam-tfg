@@ -1,4 +1,4 @@
-package google.firebase.tfgdam;
+package com.ITTDAM.bookncut;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package google.firebase.tfgdam;
+package com.ITTDAM.bookncut;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("google.firebase.tfg", appContext.getPackageName());
+        assertEquals("com.ITTDAM.bookncut", appContext.getPackageName());
     }
 }
