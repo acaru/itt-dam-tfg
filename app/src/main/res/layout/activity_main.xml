@@ -49,7 +49,6 @@
         android:layout_marginEnd="211dp"
         android:layout_marginRight="211dp"
         android:layout_marginBottom="224dp"
-        android:onClick="click"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

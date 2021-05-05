@@ -3,6 +3,7 @@ package com.ITTDAM.bookncut;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText campo1 = (EditText) findViewById(R.id.txtcampo1);
-        EditText campo2 = (EditText) findViewById(R.id.txtcampo2);
 
-        prueba1 = new prueba(campo1.getText().toString(),campo2.getText().toString());
+        //EditText campo1 = (EditText) findViewById(R.id.txtcampo1);
+        //EditText campo2 = (EditText) findViewById(R.id.txtcampo2);
 
-      db = new Database();
+        //prueba1 = new prueba(campo1.getText().toString(),campo2.getText().toString());
+
+      //db = new Database();
 
        // Map<String, Object> data = new HashMap<>();
        // data.put(VALOR_1,"hola");
@@ -53,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
        //     }
        // });
 
+    }public void registerRedirect(View view){
+        Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
     }
-    public void click(View v){
 
-        db.createDocumentPrueba1("prueba1",prueba1);
-    }
 }
