@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Usuarios usuario = new Usuarios(Nombre.getText().toString(),Apellidos.getText().toString(),Email.getText().toString(),Integer.parseInt(Telefono.getText().toString()),"Cliente");
                         db.crearUsuario(usuario);
                         Toast.makeText(RegisterActivity.this,"Se ha registrado el usuario",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                         startActivity(intent);
                     }
                     else{

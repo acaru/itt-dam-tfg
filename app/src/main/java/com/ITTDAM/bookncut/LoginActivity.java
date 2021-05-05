@@ -73,13 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                         });
                     }
                     else{
-                        Toast.makeText(LoginActivity.this,"Error al iniciar sesion",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Datos Erroneos",Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(LoginActivity.this,"Error al iniciar sesion",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Datos Erroneos",Toast.LENGTH_SHORT).show();
                     Log.d("LOGIN ERROR",e.getMessage());
                 }
             });
