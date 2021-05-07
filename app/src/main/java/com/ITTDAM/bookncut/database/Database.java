@@ -9,17 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
+import com.ITTDAM.bookncut.models.CitasUsuario;
 import com.ITTDAM.bookncut.models.Peluqueria;
 import com.ITTDAM.bookncut.models.Productos;
 import com.ITTDAM.bookncut.models.Servicios;
-import com.ITTDAM.bookncut.models.Trabajadores;
 import com.ITTDAM.bookncut.models.Usuarios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.ITTDAM.bookncut.models.prueba;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -40,6 +46,8 @@ public class Database {
     public static final String USUARIO_KEY = "usuario";
     public static final String EMAIL_KEY = "email";
     public static final String TELEFONO_KEY = "telefono";
+    public static final String PELUQUERIA_KEY = "peluqueria";
+    public static final String SERVICIO_KEY = "servicio";
     private Context contexto;
 
     public Database(Context contexto) {
@@ -48,18 +56,12 @@ public class Database {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-public void createDocumentPrueba1(String titulo,prueba datos){
-    Map<String,Object> prueba = new HashMap<>();
-    prueba.put("campo1",datos.getCampo1());
-    prueba.put("campo2",datos.getCampo2());
-    db.document("peluqueria/"+titulo).set(prueba);
-}
+//añadir/modificar datos
 public void crearPeluqueria(String titulo, Peluqueria datos){
     Map<String,Object> peluqueria = new HashMap<>();
     peluqueria.put(NOMBRE_KEY,datos.getNombre());
     peluqueria.put(UBICACION_KEY,datos.getUbicacion());
     peluqueria.put(PROPIETARIO_KEY,datos.getUbicacion());
-    peluqueria.put(PUESTOS_KEY,datos.getUbicacion());
     peluqueria.put(HORARIO_KEY,datos.getUbicacion());
     db.document("peluqueria/"+titulo).set(peluqueria).addOnSuccessListener(new OnSuccessListener<Void>() {
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -117,26 +119,6 @@ public void crearProducto(String peluqueria, Productos datos){
     });
 }
 
-public void crearTrabajador(String peluqueria, Trabajadores datos){
-    Map<String, Object> trabajadores = new HashMap<>();
-    trabajadores.put(NOMBRE_KEY, datos.getNombre());
-    trabajadores.put(APELLIDOS_KEY, datos.getApellidos());
-    trabajadores.put(JORNADA_KEY, datos.getJordana());
-    trabajadores.put(PUESTOS_KEY, datos.getPuesto());
-    db.document("peluqueria/" + peluqueria + "/trabajadores/").set(trabajadores).addOnSuccessListener(new OnSuccessListener<Void>() {
-        @Override
-        public void onSuccess(Void aVoid) {
-            Log.d(DATABASE, "Se crearon los trabajadores para la peluqueria " + peluqueria);
-            Toast.makeText(contexto,"Se creo el trabajador para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
-        }
-    }).addOnFailureListener(new OnFailureListener() {
-        @Override
-        public void onFailure(@NonNull Exception e) {
-            Log.d(DATABASE, "Error " + e.getMessage());
-            Toast.makeText(contexto,"Error al insertar el producto", Toast.LENGTH_SHORT).show();
-        }
-    });
-}
 
 public void crearCita(String peluqueria, CitasPeluqueria datos){
     Map<String, Object> cita = new HashMap<>();
@@ -144,9 +126,9 @@ public void crearCita(String peluqueria, CitasPeluqueria datos){
     cita.put(HORA_KEY, datos.getHora());
     cita.put(FINALIZADO_KEY, datos.getFinalizado());
     cita.put(USUARIO_KEY, datos.getUsuario());
-    db.document("peluqueria/" + peluqueria + "/cita/").set(cita).addOnSuccessListener(new OnSuccessListener<Void>() {
+    db.collection("peluqueria/" + peluqueria + "/cita/").add(cita).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
         @Override
-        public void onSuccess(Void aVoid) {
+        public void onSuccess(DocumentReference documentReference) {
             Log.d(DATABASE, "Se crearon la cita para la peluqueria " + peluqueria);
             Toast.makeText(contexto,"Se creo el cita para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
         }
@@ -165,7 +147,7 @@ public void crearUsuario(Usuarios datos){
     usuario.put(APELLIDOS_KEY, datos.getApellidos());
     usuario.put(EMAIL_KEY, datos.getMail());
     usuario.put(TELEFONO_KEY, datos.getTelefono());
-    usuario.put(TIPO,datos.getTipoUsuario());
+    usuario.put(TIPO,datos.getTipo());
     db.document("usuario/"+datos.getMail()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
@@ -180,4 +162,29 @@ public void crearUsuario(Usuarios datos){
         }
     });
 }
+
+    public void crearCitaUsuario(String usuario, CitasUsuario datos) {
+        Map<String, Object> cita = new HashMap<>();
+        cita.put(PELUQUERIA_KEY,datos.getPeluqueria());
+        cita.put(DIA_KEY, datos.getDia());
+        cita.put(HORA_KEY, datos.getHora());
+        cita.put(FINALIZADO_KEY, datos.getFinalizado());
+        cita.put(SERVICIO_KEY, datos.getServicio());
+        db.collection("usuario/" + usuario + "/citasusuario/").add(cita).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(DATABASE, "Se crearon la cita para el usuario " + usuario);
+                Toast.makeText(contexto, "Se creo el cita ", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Log.d(DATABASE, "Error " + e.getMessage());
+                Toast.makeText(contexto,"Error al insertar la cita", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 }

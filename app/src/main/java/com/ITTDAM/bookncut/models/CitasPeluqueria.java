@@ -3,37 +3,40 @@ package com.ITTDAM.bookncut.models;
 import java.util.Map;
 
 public class CitasPeluqueria {
-    private String Dia;
-    private String Servicio;
-    private String Hora;
-    private Boolean Finalizado;
-    private Map<String,Object> Usuario;
+    private String dia;
+    private String servicio;
+    private String hora;
+    private Boolean finalizado;
+    private Map<String,Object> usuario;
 
     public CitasPeluqueria(String dia, String servicio, String hora, Boolean finalizado, Map<String, Object> usuario) {
-        Dia = dia;
-        Servicio = servicio;
-        Hora = hora;
-        Finalizado = finalizado;
-        Usuario = usuario;
+        this.dia = dia;
+        this.servicio = servicio;
+        this.hora = hora;
+        this.finalizado = finalizado;
+        this.usuario = usuario;
+    }
+
+    public CitasPeluqueria() {
     }
 
     public String getDia() {
-        return Dia;
+        return this.dia;
     }
 
     public String getServicio() {
-        return Servicio;
+        return servicio;
     }
 
     public String getHora() {
-        return Hora;
+        return hora;
     }
 
     public Boolean getFinalizado() {
-        return Finalizado;
+        return finalizado;
     }
 
     public Map<String, Object> getUsuario() {
-        return Usuario;
+        return usuario;
     }
 }

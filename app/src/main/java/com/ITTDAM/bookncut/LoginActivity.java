@@ -10,14 +10,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ITTDAM.bookncut.models.Usuarios;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         Email = findViewById(R.id.txtEmailLogin);
         Password = findViewById(R.id.txtPasswordLogin);
@@ -51,12 +56,17 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 if(documentSnapshot.exists()){
+
+                                    Usuarios usuario =documentSnapshot.toObject(Usuarios.class);
                                     Log.d("LOGIN","Usuario Existe");
                                     Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                                    intent.putExtra("email",Email.getText().toString());
-                                    intent.putExtra("tipo",documentSnapshot.getString("tipo"));
-                                    startActivity(intent);
+                                    if(usuario.getTipo().equals("Cliente")){
+                                        Intent intent = new Intent(LoginActivity.this,MainClienteActivity.class);
+                                        intent.putExtra("email",Email.getText().toString());
+                                        intent.putExtra("nombre",usuario.getNombre()+" "+usuario.getApellidos());
+                                        startActivity(intent);
+                                    }
+                                    else if(usuario.getTipo().equals("Administrador"));
                                 }
                                 else{
                                     Log.d("LOGIN","Usuario Inexistente");

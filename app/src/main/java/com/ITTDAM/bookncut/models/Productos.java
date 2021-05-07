@@ -11,6 +11,9 @@ public class Productos {
         TipoProducto = tipoProducto;
     }
 
+    public Productos() {
+    }
+
     public String getNombre() {
         return Nombre;
     }

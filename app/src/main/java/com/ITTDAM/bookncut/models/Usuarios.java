@@ -3,38 +3,41 @@ package com.ITTDAM.bookncut.models;
 import java.util.List;
 
 public class Usuarios {
-    private String Nombre;
-    private String Apellidos;
-    private String Mail;
-    private Integer Telefono;
-    private String TipoUsuario;
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private Integer telefono;
+    private String tipo;
 
-    public Usuarios(String nombre, String apellidos, String mail, Integer telefono,String tipo) {
-        Nombre = nombre;
-        Apellidos = apellidos;
-        Mail = mail;
-        Telefono = telefono;
-        TipoUsuario = tipo;
+    public Usuarios(String nombre, String apellidos, String email, Integer telefono,String tipo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.telefono = telefono;
+        this.tipo = tipo;
+    }
+
+    public Usuarios() {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
 
     public String getMail() {
-        return Mail;
+        return email;
     }
 
     public Integer getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
-    public String getTipoUsuario() {
-        return TipoUsuario;
+    public String getTipo() {
+        return tipo;
     }
 }

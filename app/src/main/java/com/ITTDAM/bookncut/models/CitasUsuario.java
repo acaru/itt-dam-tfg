@@ -1,37 +1,40 @@
 package com.ITTDAM.bookncut.models;
 
 public class CitasUsuario {
-    private String Peluqueria;
-    private String Puesto;
-    private String Dia;
-    private String Hora;
-    private Boolean Finalizado;
+    private String peluqueria;
+    private String dia;
+    private String hora;
+    private Boolean finalizado;
+    private String servicio;
 
-    public CitasUsuario(String peluqueria, String puesto, String dia, String hora, Boolean finalizado) {
-        Peluqueria = peluqueria;
-        Puesto = puesto;
-        Dia = dia;
-        Hora = hora;
-        Finalizado = finalizado;
+    public CitasUsuario(String peluqueria, String dia, String hora, String servicio, Boolean finalizado) {
+        this.peluqueria = peluqueria;
+        this.dia = dia;
+        this.hora = hora;
+        this.servicio=servicio;
+        this.finalizado = finalizado;
+    }
+
+    public CitasUsuario() {
     }
 
     public String getPeluqueria() {
-        return Peluqueria;
-    }
-
-    public String getPuesto() {
-        return Puesto;
+        return peluqueria;
     }
 
     public String getDia() {
-        return Dia;
+        return dia;
     }
 
     public String getHora() {
-        return Hora;
+        return hora;
+    }
+
+    public String getServicio() {
+        return servicio;
     }
 
     public Boolean getFinalizado() {
-        return Finalizado;
+        return finalizado;
     }
 }

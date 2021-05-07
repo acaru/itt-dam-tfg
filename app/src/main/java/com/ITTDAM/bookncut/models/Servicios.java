@@ -11,6 +11,9 @@ public class Servicios {
         Duracion = duracion;
     }
 
+    public Servicios() {
+    }
+
     public String getNombre() {
         return Nombre;
     }

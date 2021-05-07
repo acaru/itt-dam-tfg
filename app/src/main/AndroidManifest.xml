@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookncut">
-        <activity android:name=".MainClienteActivity"></activity>
+        <activity android:name=".NewCitaUsuarioActivity"></activity>
+        <activity android:name=".MainClienteActivity" />
         <activity
             android:name=".MainAdminActivity"
             android:label="@string/title_activity_main_cliente"

@@ -4,37 +4,38 @@ import java.util.List;
 import java.util.Map;
 
 public class Peluqueria {
-    private String Nombre;
-    private String Ubicacion;
-    private String Propietario;
-    private Map<String, String > Puestos;
-    private String[] Dias;
 
-    public Peluqueria(String nombre, String ubicacion, String propietario, Map<String, String> puestos, String[] dias) {
-        Nombre = nombre;
-        Ubicacion = ubicacion;
-        Propietario = propietario;
-        Puestos = puestos;
-        Dias = dias;
+    private String nombre;
+    private String ubicacion;
+    private String propietario;
+    private String[] horario;
+    public String Id;
+
+    public Peluqueria(String nombre, String ubicacion, String propietario, String[] dias) {
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.propietario = propietario;
+        this.horario = dias;
+    }
+
+    public Peluqueria() {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getUbicacion() {
-        return Ubicacion;
+        return ubicacion;
     }
 
     public String getPropietario() {
-        return Propietario;
+        return propietario;
     }
 
-    public Map<String, String> getPuestos() {
-        return Puestos;
-    }
+
 
     public String[] getDias() {
-        return Dias;
+        return horario;
     }
 }
