@@ -1,28 +1,28 @@
 package com.ITTDAM.bookncut.models;
 
 public class Servicios {
-    private String Nombre;
-    private Double Precio;
-    private Double Duracion;
+    private String nombre;
+    private Double precio;
+    private Double duracion;
 
     public Servicios(String nombre, Double precio, Double duracion) {
-        Nombre = nombre;
-        Precio = precio;
-        Duracion = duracion;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.duracion = duracion;
     }
 
     public Servicios() {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
 
     public Double getDuracion() {
-        return Duracion;
+        return duracion;
     }
 }

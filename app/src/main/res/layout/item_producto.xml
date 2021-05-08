@@ -24,33 +24,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtVPeluqueriaRVCitaUsuario"
+                    android:id="@+id/txtVNombreProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="24sp"
+                    android:textSize="34sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtVDiaHoraRVCitaUsuario"
+                    android:id="@+id/txtVPrecioProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Texto"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/txtVServicioRVCitaUsuario"
+                    android:id="@+id/txtVTipoProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Texto"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="24sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

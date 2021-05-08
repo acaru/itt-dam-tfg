@@ -103,7 +103,7 @@ public void crearProducto(String peluqueria, Productos datos){
     Map<String,Object> productos = new HashMap<>();
     productos.put(NOMBRE_KEY,datos.getNombre());
     productos.put(PRECIO_KEY,datos.getPrecio());
-    productos.put(TIPO,datos.getTipoProducto());
+    productos.put(TIPO,datos.getTipo());
     db.document("peluqueria/"+peluqueria+"/productos/").set(productos).addOnSuccessListener(new OnSuccessListener<Void>() {
         @Override
         public void onSuccess(Void aVoid) {

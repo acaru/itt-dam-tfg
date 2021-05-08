@@ -1,28 +1,28 @@
 package com.ITTDAM.bookncut.models;
 
 public class Productos {
-    private String Nombre;
-    private Double Precio;
-    private String TipoProducto;
+    private String nombre;
+    private Double precio;
+    private String tipo;
 
-    public Productos(String nombre, Double precio, String tipoProducto) {
-        Nombre = nombre;
-        Precio = precio;
-        TipoProducto = tipoProducto;
+    public Productos(String nombre, Double precio, String tipo) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.tipo = tipo;
     }
 
     public Productos() {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
 
-    public String getTipoProducto() {
-        return TipoProducto;
+    public String getTipo() {
+        return tipo;
     }
 }
