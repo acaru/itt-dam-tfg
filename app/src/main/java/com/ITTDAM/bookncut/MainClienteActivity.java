@@ -16,6 +16,7 @@ import com.ITTDAM.bookncut.Adapters.AdapterCitasUsuarios;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
 import com.ITTDAM.bookncut.models.CitasUsuario;
+import com.ITTDAM.bookncut.ui.citas.EditCitaPeluqueriaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -61,6 +62,7 @@ public class MainClienteActivity extends AppCompatActivity implements AdapterCit
                 citas = new ArrayList<>();
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                     CitasUsuario citasusuario = documentSnapshot.toObject(CitasUsuario.class);
+                    citasusuario.Id=documentSnapshot.getId();
                     citas.add(citasusuario);
                 }
                 Log.d(TAG, "onEvent: "+citas.size());
@@ -90,6 +92,12 @@ public class MainClienteActivity extends AppCompatActivity implements AdapterCit
     @Override
     public void onClick(CitasUsuario ca) {
         Log.d("hola", "onClick: "+ca.getPeluqueria());
+        Intent in = new Intent(this, EditCitaUsuarioActivity.class);
+        in.putExtra("email",this.usuarioEmail);
+        in.putExtra("nombre",this.usuarioNombres);
+        in.putExtra("peluqueria",ca.getPeluqueria());
+        in.putExtra("id",ca.Id);
+        startActivity(in);
     }
 
     public void newCitaRedirect(View view){

@@ -39,8 +39,8 @@ public class AdapterServicios extends ListAdapter<Servicios, AdapterServicios.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Servicios servicio = getCurrentList().get(position);
         holder.nombre.setText(servicio.getNombre());
-        holder.duracion.setText(servicio.getDuracion()+"");
-        holder.precio.setText(servicio.getPrecio()+"");
+        holder.duracion.setText(servicio.getDuracion()+" horas");
+        holder.precio.setText(servicio.getPrecio()+"€");
         if(!isSearchList)
             holder.baseview.setOnClickListener(new View.OnClickListener() {
                 @Override

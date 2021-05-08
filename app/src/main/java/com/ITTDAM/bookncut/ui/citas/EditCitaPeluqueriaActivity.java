@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
+import com.ITTDAM.bookncut.models.CitasUsuario;
 import com.ITTDAM.bookncut.models.Servicios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,15 +35,15 @@ import java.util.Map;
 public class EditCitaPeluqueriaActivity extends AppCompatActivity {
 
     private static final String TAG = "EDIT CITA PELUQUERIA";
-    EditText dia,usuario,email;
-    Spinner hora;
-    Spinner servicio;
-    Database db;
-    FirebaseFirestore dbF = FirebaseFirestore.getInstance();
-    String usuarioEmail;
-    String usuarioNombres;
-    String usuarioPeluqeria;
-    String Id;
+    private EditText dia,usuario,email;
+    private Spinner hora;
+    private Spinner servicio;
+    private Database db;
+    private FirebaseFirestore dbF = FirebaseFirestore.getInstance();
+    private String usuarioEmail;
+    private String usuarioNombres;
+    private String usuarioPeluqeria;
+    private String Id;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -105,6 +106,21 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
         if(!dia.getText().toString().isEmpty()&&!email.getText().toString().isEmpty()&&!usuario.getText().toString().isEmpty()){
             CitasPeluqueria cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",email.getText().toString()),new AbstractMap.SimpleEntry<String,String>("nombre",usuario.getText().toString())));
             db.modificarCita(usuarioPeluqeria,cita,Id);
+            /*dbF.collection("usuario/"+email.getText().toString()+"/citausuario/").whereEqualTo("peluqueria",Id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.R)
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        CitasUsuario citasUsuario = documentSnapshot.toObject(CitasUsuario.class);
+                        if(cita.getDia().equals(citasUsuario.getDia())&&cita.getHora().equals(citasUsuario.getDia())){
+                            CitasUsuario cita = new CitasUsuario(usuarioPeluqeria,dia.getText().toString(), servicio.getSelectedItem()+"", hora.getSelectedItem()+"", false);
+                            db.modificarCitaUsuario(email.getText().toString(), cita, documentSnapshot.getId(),usuario.getText().toString());
+                        }
+
+                    }
+                }
+            });*/
+
             Toast.makeText(EditCitaPeluqueriaActivity.this,"Se modifico la cita", Toast.LENGTH_SHORT).show();
             finish();
         }

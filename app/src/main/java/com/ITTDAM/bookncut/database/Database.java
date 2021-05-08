@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -207,6 +208,7 @@ public void modificarServicio(String peluqueria, Servicios datos,String id){
 }
 
     public void modificarCita(String peluqueria, CitasPeluqueria datos,String id){
+
         Map<String, Object> cita = new HashMap<>();
         cita.put(DIA_KEY, datos.getDia());
         cita.put(HORA_KEY, datos.getHora());
@@ -217,6 +219,28 @@ public void modificarServicio(String peluqueria, Servicios datos,String id){
             public void onSuccess(Void avoid) {
                 Log.d(DATABASE, "Se modifico la cita para la peluqueria " + peluqueria);
                 Toast.makeText(contexto,"Se modifico el cita para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(DATABASE, "Error " + e.getMessage());
+                Toast.makeText(contexto,"Error al modificar la cita", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public void modificarCitaUsuario(String usuario, CitasUsuario datos, String id, String nombre){
+
+        Map<String, Object> cita = new HashMap<>();
+        cita.put(DIA_KEY, datos.getDia());
+        cita.put(HORA_KEY, datos.getHora());
+        cita.put(FINALIZADO_KEY, datos.getFinalizado());
+        db.document("usuario/" + usuario + "/citasusuario/"+id).set(cita).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void avoid) {
+                Log.d(DATABASE, "Se modifico la cita para el usuario " + usuario);
+                Toast.makeText(contexto,"Se modifico la cita para el usuario "+usuario, Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

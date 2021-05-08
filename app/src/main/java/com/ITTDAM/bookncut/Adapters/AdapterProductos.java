@@ -39,8 +39,8 @@ public class AdapterProductos extends ListAdapter<Productos, AdapterProductos.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Productos productos = getCurrentList().get(position);
         holder.nombre.setText(productos.getNombre());
-        holder.tipo.setText(productos.getTipo());
-        holder.precio.setText(productos.getPrecio()+"");
+        holder.tipo.setText("Tipo: "+productos.getTipo());
+        holder.precio.setText(productos.getPrecio()+"€");
         if(!isSearchList)
             holder.baseview.setOnClickListener(new View.OnClickListener() {
                 @Override

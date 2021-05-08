@@ -37,9 +37,9 @@ public class AdapterCitasPeluqueria extends ListAdapter<CitasPeluqueria, Adapter
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CitasPeluqueria CitasPeluqueria = getCurrentList().get(position);
-        holder.usuario.setText(CitasPeluqueria.getUsuario().get("nombre")+"");
-        holder.diahora.setText(CitasPeluqueria.getDia()+" "+CitasPeluqueria.getHora());
-        holder.servicio.setText(CitasPeluqueria.getServicio());
+        holder.usuario.setText("Cliente :"+CitasPeluqueria.getUsuario().get("nombre")+"");
+        holder.diahora.setText("Dia: "+CitasPeluqueria.getDia()+" "+CitasPeluqueria.getHora());
+        holder.servicio.setText("Servicio contratado:" +CitasPeluqueria.getServicio());
         if(!isSearchList)
             holder.baseview.setOnClickListener(new View.OnClickListener() {
                 @Override

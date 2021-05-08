@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Intent intent = new Intent(LoginActivity.this,MainClienteActivity.class);
                                         intent.putExtra("email",Email.getText().toString());
                                         intent.putExtra("nombre",usuario.getNombre()+" "+usuario.getApellidos());
+
                                         startActivity(intent);
                                     }
                                     else if(usuario.getTipo().equals("Administrador")){
@@ -72,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
                                         intent.putExtra("nombre",usuario.getNombre()+" "+usuario.getApellidos());
                                         startActivity(intent);
                                     }
+                                    Email.setText("");
+                                    Password.setText("");
                                 }
                                 else{
                                     Log.d("LOGIN","Usuario Inexistente");

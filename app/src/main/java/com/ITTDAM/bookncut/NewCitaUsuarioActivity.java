@@ -1,5 +1,6 @@
 package com.ITTDAM.bookncut;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,10 +18,15 @@ import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
 import com.ITTDAM.bookncut.models.CitasUsuario;
 import com.ITTDAM.bookncut.models.Peluqueria;
+import com.ITTDAM.bookncut.models.Servicios;
+import com.ITTDAM.bookncut.ui.citas.NewCitaPeluqueriaActivity;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -37,7 +43,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
     Spinner peluqueriaSpn;
     Database db;
     FirebaseFirestore dbF = FirebaseFirestore.getInstance();
-    List<Peluqueria> peluquerias;
+    String Peluqueria;
     String usuarioEmail;
     String usuarioNombres;
 
@@ -54,69 +60,57 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
             usuarioNombres = extras.getString("nombre");
             // and get whatever type user account id is
         }
-
-        peluquerias = new ArrayList<>();
-
-        List<String> nombrePeluquerias = new ArrayList<>();
-        dbF.collection("peluqueria").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                    Peluqueria peluqueria = documentSnapshot.toObject(Peluqueria.class);
-                    peluqueria.Id=documentSnapshot.getId();
-                    peluquerias.add(peluqueria);
-                }
-                Log.d("REGISTER", "onCreate: "+peluquerias.size());
-                peluquerias.forEach(peluqueria -> {
-                    Log.d("REGISTER", "onCreate: "+peluqueria.getNombre());
-                    nombrePeluquerias.add(peluqueria.Id);
-                });
-
-                if(peluquerias.size()==1){
-                    peluqueriaSpn.setVisibility(View.GONE);
-                    TextView texto = findViewById(R.id.txtVPeluqueriaCitaUsuario);
-                    texto.setVisibility(View.GONE);
-                }
-                else if (peluquerias.size()>1){
-                    TextView texto = findViewById(R.id.txtVPeluqueriaCitaUsuario);
-                    texto.setVisibility(View.VISIBLE);
-                    peluqueriaSpn.setVisibility(View.VISIBLE);
-                    peluqueriaSpn.setAdapter(new ArrayAdapter<String>(NewCitaUsuarioActivity.this, android.R.layout.simple_list_item_1,nombrePeluquerias));
-                }
-            }
-        });
-
-
-
-
-
         dia = findViewById(R.id.txtVDiaCitaUsuario);
         hora = findViewById(R.id.spnHoraCitaUsuario);
         servicio = findViewById(R.id.spnServicioCitasUsuario);
-        peluqueriaSpn = findViewById(R.id.spnPeluqueriaCitasUsuario);
         hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona la hora","9:00","10:00","11:00","12:00","13:00","15:00","16:00","17:00","18:00","19:00"))));
 
-        servicio.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona el servicio","Corte Pelo","Corte Barba","Pintado de pelo"))));
+        List<String> servicios = new ArrayList<>();
+        servicios.add("Selecciona un servicio");
+        dbF.collection("peluqueria/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    Peluqueria = documentSnapshot.getId();
+                    dbF.collection("peluqueria/"+Peluqueria+"/servicio/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            Log.d(TAG, "onSuccess: Fuerda del for"+Peluqueria);
+                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                Log.d(TAG, "onSuccess: Dentro");
+                                Servicios servicio = documentSnapshot.toObject(Servicios.class);
+                                Log.d(TAG, "onSuccess: "+ documentSnapshot.toObject(Servicios.class).getNombre());
+                                servicios.add(servicio.getNombre());
+                            }
+                            servicio.setAdapter(new ArrayAdapter<String>(NewCitaUsuarioActivity.this, android.R.layout.simple_list_item_1,servicios));
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            Toast.makeText(NewCitaUsuarioActivity.this,"Error al obtener datos de firestore", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG,"Error",e);
+                        }
+                    });
+                }
+            }
+                });
+
+
+
+
+
+
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void createCita(View view){
         if(!dia.getText().toString().isEmpty()&&servicio.getSelectedItem()!="Selecciona el servicio"&&hora.getSelectedItem()!="Selecciona la hora"){
-            if(peluquerias.size()==1){
-            CitasUsuario cita = new CitasUsuario(peluquerias.get(0).Id,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
+            CitasUsuario cita = new CitasUsuario(Peluqueria,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
                 CitasPeluqueria citaPeluqueria = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres)));
                 db.crearCitaUsuario(this.usuarioEmail,cita);
-                db.crearCita(peluquerias.get(0).Id,citaPeluqueria);
+                db.crearCita(Peluqueria,citaPeluqueria);
                 finish();
-            }
-            else{
-                CitasUsuario cita = new CitasUsuario(peluqueriaSpn.getSelectedItem()+"",dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
-                CitasPeluqueria citaPeluqueria = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres)));
-                db.crearCitaUsuario(this.usuarioEmail,cita);
-                db.crearCita(peluqueriaSpn.getSelectedItem()+"",citaPeluqueria);
-                finish();
-            }
         }
         else{
             Toast.makeText(this,"Datos incompletos", Toast.LENGTH_SHORT).show();
