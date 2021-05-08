@@ -4,6 +4,7 @@ public class Servicios {
     private String nombre;
     private Double precio;
     private Double duracion;
+    public String Id;
 
     public Servicios(String nombre, Double precio, Double duracion) {
         this.nombre = nombre;

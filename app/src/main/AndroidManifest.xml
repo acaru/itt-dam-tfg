@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookncut">
-        <activity android:name=".NewCitaPeluqueriaActivity"></activity>
-        <activity android:name=".NewProductoActivity" />
-        <activity android:name=".NewServicioActivity" />
+        <activity android:name=".ui.servicios.EditServicioActivity"></activity>
+        <activity android:name=".ui.productos.EditProductoActivity" />
+        <activity android:name=".ui.citas.EditCitaPeluqueriaActivity" />
+        <activity android:name=".ui.citas.NewCitaPeluqueriaActivity" />
+        <activity android:name=".ui.productos.NewProductoActivity" />
+        <activity android:name=".ui.servicios.NewServicioActivity" />
         <activity android:name=".NewCitaUsuarioActivity" />
         <activity android:name=".MainClienteActivity" />
         <activity

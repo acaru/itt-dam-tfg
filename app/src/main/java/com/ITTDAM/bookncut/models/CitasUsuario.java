@@ -6,6 +6,7 @@ public class CitasUsuario {
     private String hora;
     private Boolean finalizado;
     private String servicio;
+    public String Id;
 
     public CitasUsuario(String peluqueria, String dia, String hora, String servicio, Boolean finalizado) {
         this.peluqueria = peluqueria;

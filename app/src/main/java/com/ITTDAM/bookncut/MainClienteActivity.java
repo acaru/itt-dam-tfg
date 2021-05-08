@@ -84,28 +84,6 @@ public class MainClienteActivity extends AppCompatActivity implements AdapterCit
         }
         db=new Database(this);
         citasRef= FirebaseFirestore.getInstance().collection("usuario/"+usuarioEmail+"/citasusuario");
-        /*citasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-              citas = new ArrayList<>();
-                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                    Log.d(TAG, "onEvent: "+documentSnapshot.getId());
-                    citas.add(documentSnapshot.toObject(CitasUsuario.class));
-                }
-                adapterCitasUsuariositas = new AdapterCitasUsuarios(citas,MainClienteActivity.this);
-                adapterCitasUsuariositas.submitList(citas);
-                rvCitasUsuario.setAdapter(adapterCitasUsuariositas);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                Log.d(TAG, "onFailure: "+e.getMessage());
-                Toast.makeText(MainClienteActivity.this,"Error al obtener datos", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-
-
 
     }
 

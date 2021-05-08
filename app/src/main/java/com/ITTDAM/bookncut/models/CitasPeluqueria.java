@@ -8,6 +8,7 @@ public class CitasPeluqueria {
     private String hora;
     private Boolean finalizado;
     private Map<String,Object> usuario;
+    public String Id;
 
     public CitasPeluqueria(String dia, String servicio, String hora, Boolean finalizado, Map<String, Object> usuario) {
         this.dia = dia;

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 public class NewCitaUsuarioActivity extends AppCompatActivity {
 
+    private static final String TAG = "NEW CITA USUARIO";
     EditText dia;
     Spinner hora;
     Spinner servicio;
@@ -45,6 +47,13 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_cita_usuario);
         db = new Database(this);
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            usuarioEmail = extras.getString("email");
+            usuarioNombres = extras.getString("nombre");
+            // and get whatever type user account id is
+        }
 
         peluquerias = new ArrayList<>();
 
@@ -77,13 +86,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
 
-        if (extras != null) {
-            usuarioEmail = extras.getString("email");
-            usuarioNombres = extras.getString("nombre");
-            // and get whatever type user account id is
-        }
 
 
 
@@ -114,6 +117,10 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                 db.crearCita(peluqueriaSpn.getSelectedItem()+"",citaPeluqueria);
                 finish();
             }
+        }
+        else{
+            Toast.makeText(this,"Datos incompletos", Toast.LENGTH_SHORT).show();
+            Log.d(TAG,"Error Datos incompletos");
         }
     }
 }

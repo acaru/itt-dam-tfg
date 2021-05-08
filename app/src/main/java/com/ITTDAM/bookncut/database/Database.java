@@ -84,9 +84,9 @@ public void crearServicio(String peluqueria, Servicios datos){
     servicios.put(NOMBRE_KEY,datos.getNombre());
     servicios.put(DURACION_KEY,datos.getDuracion());
     servicios.put(PRECIO_KEY,datos.getDuracion());
-    db.document("peluqueria/"+peluqueria+"/servicios/").set(servicios).addOnSuccessListener(new OnSuccessListener<Void>() {
+    db.collection("peluqueria/"+peluqueria+"/servicio/").add(servicios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
         @Override
-        public void onSuccess(Void aVoid) {
+        public void onSuccess(DocumentReference documentReference) {
             Log.d(DATABASE,"Se creo el servicio para la peluqueria "+peluqueria);
             Toast.makeText(contexto,"Se creo el servicio para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
         }
@@ -104,9 +104,9 @@ public void crearProducto(String peluqueria, Productos datos){
     productos.put(NOMBRE_KEY,datos.getNombre());
     productos.put(PRECIO_KEY,datos.getPrecio());
     productos.put(TIPO,datos.getTipo());
-    db.document("peluqueria/"+peluqueria+"/productos/").set(productos).addOnSuccessListener(new OnSuccessListener<Void>() {
+    db.collection("peluqueria/"+peluqueria+"/producto/").add(productos).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
         @Override
-        public void onSuccess(Void aVoid) {
+        public void onSuccess(DocumentReference documentReference) {
             Log.d(DATABASE,"Se creo el producto para la peluqueria "+peluqueria);
             Toast.makeText(contexto,"Se creo el producto para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
         }
@@ -185,6 +185,66 @@ public void crearUsuario(Usuarios datos){
         });
     }
 
+//modificar datos
+public void modificarServicio(String peluqueria, Servicios datos,String id){
+    Map<String,Object> servicios = new HashMap<>();
+    servicios.put(NOMBRE_KEY,datos.getNombre());
+    servicios.put(DURACION_KEY,datos.getDuracion());
+    servicios.put(PRECIO_KEY,datos.getDuracion());
+    db.document("peluqueria/"+peluqueria+"/servicio/"+id).set(servicios).addOnSuccessListener(new OnSuccessListener<Void>() {
+        @Override
+        public void onSuccess(Void avoid) {
+            Log.d(DATABASE,"Se modifico el servicio para la peluqueria "+peluqueria);
+            Toast.makeText(contexto,"Se modifico el servicio para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
+        }
+    }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception e) {
+            Log.d(DATABASE,"Error "+e.getMessage());
+            Toast.makeText(contexto,"Error al modificar el servicio", Toast.LENGTH_SHORT).show();
+        }
+    });
+}
 
+    public void modificarCita(String peluqueria, CitasPeluqueria datos,String id){
+        Map<String, Object> cita = new HashMap<>();
+        cita.put(DIA_KEY, datos.getDia());
+        cita.put(HORA_KEY, datos.getHora());
+        cita.put(FINALIZADO_KEY, datos.getFinalizado());
+        cita.put(USUARIO_KEY, datos.getUsuario());
+        db.document("peluqueria/" + peluqueria + "/cita/"+id).set(cita).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void avoid) {
+                Log.d(DATABASE, "Se modifico la cita para la peluqueria " + peluqueria);
+                Toast.makeText(contexto,"Se modifico el cita para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(DATABASE, "Error " + e.getMessage());
+                Toast.makeText(contexto,"Error al modificar la cita", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void modificarProducto(String peluqueria, Productos datos,String id){
+        Map<String,Object> productos = new HashMap<>();
+        productos.put(NOMBRE_KEY,datos.getNombre());
+        productos.put(PRECIO_KEY,datos.getPrecio());
+        productos.put(TIPO,datos.getTipo());
+        db.document("peluqueria/"+peluqueria+"/producto/"+id).set(productos).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void avoid) {
+                Log.d(DATABASE,"Se modifico el producto para la peluqueria "+peluqueria);
+                Toast.makeText(contexto,"Se modifico el producto para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(DATABASE,"Error "+e.getMessage());
+                Toast.makeText(contexto,"Error al modificar el producto", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

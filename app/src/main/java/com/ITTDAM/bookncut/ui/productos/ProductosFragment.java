@@ -1,25 +1,23 @@
 package com.ITTDAM.bookncut.ui.productos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ITTDAM.bookncut.Adapters.AdapterProductos;
-import com.ITTDAM.bookncut.Adapters.AdapterServicios;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.models.Productos;
-import com.ITTDAM.bookncut.models.Servicios;
+import com.ITTDAM.bookncut.ui.citas.EditCitaPeluqueriaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.EventListener;
@@ -42,10 +40,13 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
     private RecyclerView rvProductos;
     private AdapterProductos adapterProductos;
     private List<Productos> productos;
+    private String Peluqueria;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_productos, container, false);
+        Button btn = root.findViewById(R.id.button9);
+        btn.setOnClickListener(this::redirectProductoNuevo);
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
             usuarioEmail = extras.getString("email");
@@ -64,12 +65,15 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
             @Override
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException e) {
                 for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                    Peluqueria=documentSnapshot.getId();
                     db.collection("peluqueria/"+documentSnapshot.getId()+"/producto/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             productos = new ArrayList<>();
                             for(QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
-                                productos.add(documentSnapshot1.toObject(Productos.class));
+                                Productos producto = documentSnapshot1.toObject(Productos.class);
+                                producto.Id=documentSnapshot1.getId();
+                                productos.add(producto);
                             }
                             adapterProductos = new AdapterProductos(productos, ProductosFragment.this);
                             adapterProductos.submitList(productos);
@@ -89,5 +93,19 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
     @Override
     public void onClick(Productos ca) {
         Log.d(TAG, "onClick: "+ca.getNombre());
+        Intent in = new Intent(getActivity(), EditProductoActivity.class);
+        in.putExtra("email",this.usuarioEmail);
+        in.putExtra("nombre",this.usuarioNombres);
+        in.putExtra("peluqueria",this.Peluqueria);
+        in.putExtra("id",ca.Id);
+        startActivity(in);
+    }
+
+    public void redirectProductoNuevo(View view){
+        Intent in = new Intent(getActivity(), NewProductoActivity.class);
+        in.putExtra("email",this.usuarioEmail);
+        in.putExtra("nombre",this.usuarioNombres);
+        in.putExtra("peluqueria",this.Peluqueria);
+        startActivity(in);
     }
 }

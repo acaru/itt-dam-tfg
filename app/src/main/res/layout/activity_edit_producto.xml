@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.servicios.NewServicioActivity">
+    tools:context=".ui.productos.EditProductoActivity">
+
 
     <TextView
         android:id="@+id/textView7"
@@ -12,16 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="26dp"
-        android:text="Nombre del servicio"
+        android:text="Nombre del producto"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtNombreNewServicio"
+        app:layout_constraintBottom_toTopOf="@+id/txtNombreEditProducto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtNombreNewServicio"
+        android:id="@+id/txtNombreEditProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -38,13 +39,13 @@
         android:layout_marginBottom="25dp"
         android:text="Precio"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtPrecioNewServicio"
+        app:layout_constraintBottom_toTopOf="@+id/txtPrecioEditProducto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/txtPrecioNewServicio"
+        android:id="@+id/txtPrecioEditProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -59,15 +60,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:text="Duracion"
+        android:text="Tipo de producto"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtDuracionNewServicio"
+        app:layout_constraintBottom_toTopOf="@+id/txtTipoEditProducto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/txtDuracionNewServicio"
+        android:id="@+id/txtTipoEditProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -82,11 +83,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:onClick="guardarServicio"
+        android:layout_marginBottom="100dp"
+        android:onClick="modificarProducto"
         android:text="Guardar"
+        app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDuracionNewServicio" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTipoEditProducto" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:onClick="borrarProducto"
+        android:text="Borrar"
+        app:backgroundTint="#E91E63"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
