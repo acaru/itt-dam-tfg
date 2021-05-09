@@ -32,9 +32,11 @@
                     android:id="@+id/txtVNombreProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="34sp"
+                    android:textColor="#2196F3"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -43,7 +45,8 @@
                     android:layout_height="wrap_content"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="24sp" />
+                    android:textColor="#8BC34A"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtVTipoProducto"
@@ -52,7 +55,8 @@
                     android:gravity="center"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="24sp" />
+                    android:textColor="#673AB7"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

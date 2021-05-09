@@ -53,11 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
                         Usuarios usuario = new Usuarios(Nombre.getText().toString(),Apellidos.getText().toString(),Email.getText().toString(),Integer.parseInt(Telefono.getText().toString()),"Cliente");
                         db.crearUsuario(usuario);
                         Toast.makeText(RegisterActivity.this,"Se ha registrado el usuario",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                        startActivity(intent);
+                        finish();
                     }
                     else{
-                        Toast.makeText(RegisterActivity.this,"Se ha producido un error al insertar el usuario",Toast.LENGTH_SHORT).show();
+                        Log.e("REGISTER ERROR", "onComplete: ", task.getException());
+                        Toast.makeText(RegisterActivity.this,"Revisa los campos email y contraseña (min. 6 caracteres)",Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {

@@ -32,8 +32,10 @@
                     android:id="@+id/txtVPeluqueriaRVCitaUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#2196F3"
                     android:textSize="34sp"
                     android:textStyle="bold" />
 
@@ -41,17 +43,21 @@
                     android:id="@+id/txtVDiaHoraRVCitaUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#8BC34A"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtVServicioRVCitaUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
                     android:text="Texto"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#673AB7"
                     android:textSize="24sp" />
             </LinearLayout>
 

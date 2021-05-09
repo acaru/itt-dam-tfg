@@ -126,6 +126,7 @@ public void crearCita(String peluqueria, CitasPeluqueria datos){
     cita.put(DIA_KEY, datos.getDia());
     cita.put(HORA_KEY, datos.getHora());
     cita.put(FINALIZADO_KEY, datos.getFinalizado());
+    cita.put(SERVICIO_KEY,datos.getServicio());
     cita.put(USUARIO_KEY, datos.getUsuario());
     db.collection("peluqueria/" + peluqueria + "/cita/").add(cita).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
         @Override
@@ -213,6 +214,7 @@ public void modificarServicio(String peluqueria, Servicios datos,String id){
         cita.put(DIA_KEY, datos.getDia());
         cita.put(HORA_KEY, datos.getHora());
         cita.put(FINALIZADO_KEY, datos.getFinalizado());
+        cita.put(SERVICIO_KEY,datos.getServicio());
         cita.put(USUARIO_KEY, datos.getUsuario());
         db.document("peluqueria/" + peluqueria + "/cita/"+id).set(cita).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

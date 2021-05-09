@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
+import com.ITTDAM.bookncut.models.CitasUsuario;
 import com.ITTDAM.bookncut.models.Servicios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -86,14 +87,16 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
     public void createCita(View view){
         if(!dia.getText().toString().isEmpty()&&hora.getSelectedItem()!="Selecciona la hora"&&servicio.getSelectedItem()!="Selecciona un servicio"){
             CitasPeluqueria cita;
-            if(!usuario.toString().isEmpty()){
+            if(!usuario.toString().isEmpty()&&email.getText().toString().isEmpty()){
             cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario","rellenar"),new AbstractMap.SimpleEntry<String,String>("nombre",usuario.getText().toString())));
             }
-            else if(!email.getText().toString().isEmpty()){
+            else if(usuario.toString().isEmpty()&&!email.getText().toString().isEmpty()){
                 cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",email.getText().toString()),new AbstractMap.SimpleEntry<String,String>("nombre","rellenar")));
             }
             else if(!usuario.toString().isEmpty()&&!email.getText().toString().isEmpty()){
                 cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",email.getText().toString()),new AbstractMap.SimpleEntry<String,String>("nombre",usuario.getText().toString())));
+                CitasUsuario citU = new CitasUsuario(usuarioPeluqeria,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
+                db.crearCitaUsuario(email.getText().toString(),citU);
             }
             else
              cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario","rellenar"),new AbstractMap.SimpleEntry<String,String>("nombre","rellenar")));
