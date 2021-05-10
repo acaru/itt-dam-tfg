@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ITTDAM.bookncut">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookncut.NoActionBar">
-        <activity android:name=".EditCitaUsuarioActivity"></activity>
+        <activity android:name=".EditCitaUsuarioActivity"/>
         <activity android:name=".ui.servicios.EditServicioActivity" />
         <activity android:name=".ui.productos.EditProductoActivity" />
         <activity android:name=".ui.citas.EditCitaPeluqueriaActivity" />
         <activity android:name=".ui.citas.NewCitaPeluqueriaActivity" />
         <activity android:name=".ui.productos.NewProductoActivity" />
         <activity android:name=".ui.servicios.NewServicioActivity" />
-        <activity android:name=".NewCitaUsuarioActivity" />
-        <activity android:name=".MainClienteActivity" />
+        <activity android:name=".NewCitaUsuarioActivity"/>
+        <activity android:name=".MainClienteActivity"/>
         <activity
             android:name=".MainAdminActivity"
             android:label="@string/title_activity_main_cliente"
@@ -31,10 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
+

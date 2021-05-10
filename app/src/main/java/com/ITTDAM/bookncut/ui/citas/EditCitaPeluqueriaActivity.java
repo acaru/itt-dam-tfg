@@ -53,6 +53,7 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
         db= new Database(this);
         Bundle extras = getIntent().getExtras();
 
+        //Comprobamos que los extras no sean null
         if (extras != null) {
             usuarioEmail = extras.getString("email");
             usuarioNombres = extras.getString("nombre");
