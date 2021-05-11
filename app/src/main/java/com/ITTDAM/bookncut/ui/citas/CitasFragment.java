@@ -46,13 +46,12 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_citas, container, false);
-        Button botn = root.findViewById(R.id.button8);
+        Button botn = root.findViewById(R.id.button8); //definimos un botón para nueva cita en el layout del fragment
         botn.setOnClickListener(this::redirectNuevaCita);
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
             usuarioEmail = extras.getString("email");
             usuarioNombres = extras.getString("nombre");
-            // and get whatever type user account id is
         }
         return root;
     }
@@ -62,22 +61,29 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
         super.onStart();
         rvCitasPeluqueria = getView().findViewById(R.id.rvCitasPeluqueria);
         rvCitasPeluqueria.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //addSnapshotListener escucha los cambios de una colección que se especifique
         db.collection("peluqueria").whereEqualTo("propietario",usuarioEmail).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException e) {
+
+                //Obtiene todas las citas de la peluqueria que son del propietario
                 for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
                     Peluqueria=documentSnapshot.getId();
-                    db.collection("peluqueria/"+documentSnapshot.getId()+"/cita/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    db.collection("peluqueria/"+Peluqueria+"/cita/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             citas = new ArrayList<>();
                             for(QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
                                     CitasPeluqueria cita = documentSnapshot1.toObject(CitasPeluqueria.class);
                                     cita.Id=documentSnapshot1.getId();
-                                citas.add(cita);
+                                    citas.add(cita);
                             }
+                            //Pinta en el RecyclerView todas las peluquerias del propietario
                             adapterCitasPeluqueria = new AdapterCitasPeluqueria(citas,CitasFragment.this);
+                            //Le pone al adapter la lista que va a mostrar
                             adapterCitasPeluqueria.submitList(citas);
+                            //Por último le pone el adapter al Recycler View
                             rvCitasPeluqueria.setAdapter(adapterCitasPeluqueria);
                         }
                     }).addOnFailureListener(new OnFailureListener() {

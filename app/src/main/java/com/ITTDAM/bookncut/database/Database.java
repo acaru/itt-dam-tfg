@@ -198,6 +198,7 @@ public class Database {
     }
 
     //modificar datos
+    //se utiliza SET para que modifique solo los campos modificados y los no modificados los deja igual, en cambio UPDATE deberiamos de tener en cuenta que es lo que se modificó
     public void modificarServicio(String peluqueria, Servicios datos,String id){
         Map<String,Object> servicios = new HashMap<>();
         servicios.put(NOMBRE_KEY,datos.getNombre());

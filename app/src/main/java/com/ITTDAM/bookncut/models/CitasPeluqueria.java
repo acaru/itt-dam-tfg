@@ -7,7 +7,7 @@ public class CitasPeluqueria {
     private String servicio;
     private String hora;
     private Boolean finalizado;
-    private Map<String,Object> usuario;
+    private Map<String,Object> usuario; //se declara un map en el campo usuario porque solo tendrá dos campos propios (nombre y email "usuario en Fire")
     public String Id;
 
     public CitasPeluqueria(String dia, String servicio, String hora, Boolean finalizado, Map<String, Object> usuario) {

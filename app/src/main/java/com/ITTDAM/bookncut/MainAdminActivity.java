@@ -26,11 +26,13 @@ public class MainAdminActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        //Definicion para navigation drawer, se genera auto
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view); //
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
+        //Segun el fragmento seleccionado muestra uno u otro
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_servicios, R.id.nav_productos)
                 .setDrawerLayout(drawer)
