@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ITTDAM.bookncut.Adapters.DatePickerFragment;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
@@ -62,6 +65,7 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
         }
 
         dia = findViewById(R.id.txtVDiaEditCitaPeluqueria);
+        dia.setOnClickListener(this::chooseDate);
         hora = findViewById(R.id.spnHoraEditCitaPeluqueria);
         servicio = findViewById(R.id.spnServicioEditCitasPeluqueria);
         usuario = findViewById(R.id.txtNombreUsuarioEditCitaPeluqueria);
@@ -102,6 +106,20 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void chooseDate(View view){
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                dia.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void modificarCita(View v){
         if(!dia.getText().toString().isEmpty()&&!email.getText().toString().isEmpty()&&!usuario.getText().toString().isEmpty()){

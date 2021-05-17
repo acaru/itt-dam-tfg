@@ -17,6 +17,7 @@ import com.ITTDAM.bookncut.models.Usuarios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -141,7 +142,7 @@ public class Database {
         db.collection("peluqueria/" + peluqueria + "/cita/").add(cita).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Log.d(DATABASE, "Se crearon la cita para la peluqueria " + peluqueria);
+                Log.d(DATABASE, "Se creo la cita para la peluqueria " + peluqueria);
                 Toast.makeText(contexto,"Se creo el cita para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -209,6 +210,7 @@ public class Database {
             public void onSuccess(Void avoid) {
                 Log.d(DATABASE,"Se modifico el servicio para la peluqueria "+peluqueria);
                 Toast.makeText(contexto,"Se modifico el servicio para la peluqueria "+peluqueria, Toast.LENGTH_SHORT).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -243,7 +245,7 @@ public class Database {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)
-    public void modificarCitaUsuario(String usuario, CitasUsuario datos, String id, String nombre){
+    public void modificarCitaUsuario(String usuario, CitasUsuario datos, String id){
 
         Map<String, Object> cita = new HashMap<>();
         cita.put(DIA_KEY, datos.getDia());

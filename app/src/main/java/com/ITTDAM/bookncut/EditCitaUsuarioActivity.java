@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ITTDAM.bookncut.Adapters.DatePickerFragment;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
 import com.ITTDAM.bookncut.models.CitasUsuario;
@@ -35,7 +38,7 @@ import java.util.Map;
 
 public class EditCitaUsuarioActivity extends AppCompatActivity {
 
-    private static final String TAG = "EDIT CITA PELUQUERIA";
+    private static final String TAG = "EDIT CITA USUARIO";
     private EditText dia;
     private Spinner hora;
     private Spinner servicio;
@@ -62,9 +65,14 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
         }
 
         dia = findViewById(R.id.txtVDiaEditCitaUsuario);
+        dia.setOnClickListener(this::chooseDate);
         hora = findViewById(R.id.spnHoraEditCitaUsuario);
         servicio = findViewById(R.id.spnServicioEditCitasUsuario);
+
+        //Pintamos cada item desde una lista de strings
         hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona la hora","9:00","10:00","11:00","12:00","13:00","15:00","16:00","17:00","18:00","19:00"))));
+
+        //Sacamos y recorremos los servicios de la peluqueria desde Firestore y los pintamos en cada item
         List<String> servicios = new ArrayList<>();
         dbF.collection("peluqueria/"+Peluqueria+"/servicio").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -87,7 +95,6 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
-                    Log.d(TAG, "onSuccess: "+documentSnapshot.toObject(CitasUsuario.class).getHora());
                     CitasUsuario cita = documentSnapshot.toObject(CitasUsuario.class);
                     dia.setText(cita.getDia());
                     servicio.setSelection(servicios.indexOf(cita.getServicio()));
@@ -95,6 +102,8 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
                 }
                 else{
                     Log.d(TAG, "onSuccess: El documento "+"usuario/"+usuarioEmail+"/citasusuario/"+Id+" no existe");
+                    Toast.makeText(EditCitaUsuarioActivity.this,"Error el elemento no existe", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
             }
@@ -105,6 +114,19 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
                 Log.e(TAG,"Error",e);
             }
         });
+    }
+
+    public void chooseDate(View view){
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                dia.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)
@@ -126,7 +148,7 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
                 }
             });*/
             CitasUsuario cita = new CitasUsuario(Peluqueria,dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false);
-            db.modificarCitaUsuario(usuarioEmail,cita,Id,usuarioNombres);
+            db.modificarCitaUsuario(usuarioEmail,cita,Id);
 
             Toast.makeText(EditCitaUsuarioActivity.this,"Se modifico la cita", Toast.LENGTH_SHORT).show();
             finish();

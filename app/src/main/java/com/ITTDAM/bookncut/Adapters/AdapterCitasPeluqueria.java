@@ -92,7 +92,5 @@ public class AdapterCitasPeluqueria extends ListAdapter<CitasPeluqueria, Adapter
     public interface MyListener
     {
         void onClick(CitasPeluqueria ca);
-
-
     }
 }

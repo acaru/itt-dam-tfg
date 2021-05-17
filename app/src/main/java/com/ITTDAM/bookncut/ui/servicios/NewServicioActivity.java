@@ -36,6 +36,7 @@ public class NewServicioActivity extends AppCompatActivity {
         duracion = findViewById(R.id.txtDuracionNewServicio);
     }
 
+    //Metodo para que la peluqueria cree nuevos servicios
     public void guardarServicio(View view){
         if(!nombre.getText().toString().isEmpty()&&!precio.getText().toString().isEmpty()&&!duracion.getText().toString().isEmpty()){
             Servicios servicios = new Servicios(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),Double.parseDouble(duracion.getText().toString()));

@@ -4,16 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ITTDAM.bookncut.Adapters.DatePickerFragment;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
 import com.ITTDAM.bookncut.models.CitasUsuario;
@@ -61,6 +64,8 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
             // and get whatever type user account id is
         }
         dia = findViewById(R.id.txtVDiaCitaUsuario);
+
+        dia.setOnClickListener(this::chooseDate);
         hora = findViewById(R.id.spnHoraCitaUsuario);
         servicio = findViewById(R.id.spnServicioCitasUsuario);
         hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona la hora","9:00","10:00","11:00","12:00","13:00","15:00","16:00","17:00","18:00","19:00"))));
@@ -103,6 +108,20 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
     }
 
+    //Método para poder escoger fecha en la activity de crear nueva cita usuario
+    public void chooseDate(View view){
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                dia.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void createCita(View view){
         if(!dia.getText().toString().isEmpty()&&servicio.getSelectedItem()!="Selecciona el servicio"&&hora.getSelectedItem()!="Selecciona la hora"){
@@ -110,6 +129,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                 CitasPeluqueria citaPeluqueria = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres)));
                 db.crearCitaUsuario(this.usuarioEmail,cita);
                 db.crearCita(Peluqueria,citaPeluqueria);
+                Toast.makeText(this,"Se creo la cita", Toast.LENGTH_SHORT).show();
                 finish();
         }
         else{

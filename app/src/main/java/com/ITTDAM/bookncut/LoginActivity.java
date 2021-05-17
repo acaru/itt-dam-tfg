@@ -41,10 +41,26 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //Metodo para redirigir activity login a registro
     public void registerRedirect(View view){
         Intent intent = new Intent(this,RegisterActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==1)
+        {
+            Intent intent = new Intent(this,MainClienteActivity.class);
+            intent.putExtra("nombre",data.getStringExtra("nombre"));
+            intent.putExtra("email",data.getStringExtra("email"));
+            startActivity(intent);
+        }
+    }
+
 
     public void Login(View view){
         if(!Email.getText().toString().isEmpty()&&!Password.getText().toString().isEmpty()) {
@@ -60,11 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                                     Usuarios usuario =documentSnapshot.toObject(Usuarios.class);
                                     Log.d("LOGIN","Usuario Existe");
                                     Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_SHORT).show();
+
+                                    //ACL (Access Control List) se usa para verificar el tipo de usuario en Firestore, peluqueria (administrador) o usuario (cliente)
                                     if(usuario.getTipo().equals("Cliente")){
                                         Intent intent = new Intent(LoginActivity.this,MainClienteActivity.class);
                                         intent.putExtra("email",Email.getText().toString());
                                         intent.putExtra("nombre",usuario.getNombre()+" "+usuario.getApellidos());
-
                                         startActivity(intent);
                                     }
                                     else if(usuario.getTipo().equals("Administrador")){

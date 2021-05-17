@@ -48,6 +48,7 @@ public class EditServicioActivity extends AppCompatActivity {
         precio = findViewById(R.id.txtPrecioEditServicio);
         duracion = findViewById(R.id.txtDuracionEditServicio);
 
+        //Obtiene o lee el servicio que recibe de ServiciosFragment (activity anterior) mediante su Id que le hemos pasado por extras
         dbF.document("peluqueria/"+Peluqueria+"/servicio/"+Id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

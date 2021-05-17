@@ -37,6 +37,7 @@ public class NewProductoActivity extends AppCompatActivity {
         tipo = findViewById(R.id.txtTipoNewProducto);
     }
 
+    //Metodo para que la peluqueria cree nuevos productos
     public void guardarProducto(View view){
         if(!nombre.getText().toString().isEmpty()&&!precio.getText().toString().isEmpty()&&!tipo.getText().toString().isEmpty()){
             Productos producto = new Productos(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),tipo.getText().toString());
