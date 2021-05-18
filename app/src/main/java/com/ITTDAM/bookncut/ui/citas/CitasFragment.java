@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ITTDAM.bookncut.Adapters.AdapterCitasPeluqueria;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
+import com.ITTDAM.bookncut.models.Peluqueria;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.EventListener;
@@ -37,7 +38,7 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String usuarioEmail;
     private String usuarioNombres;
-    private String Peluqueria;
+    private String peluqueria;
     private RecyclerView rvCitasPeluqueria;
     private AdapterCitasPeluqueria adapterCitasPeluqueria;
     private List<CitasPeluqueria> citas;
@@ -68,9 +69,11 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException e) {
 
                 //Obtiene todas las citas de la peluqueria que son del propietario
-                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
-                    Peluqueria=documentSnapshot.getId();
-                    db.collection("peluqueria/"+Peluqueria+"/cita/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){//admin@gmail.com
+                    peluqueria =documentSnapshot.getId();
+                    Peluqueria as = documentSnapshot.toObject(Peluqueria.class);
+                    Log.d(TAG, "onEvent: "+as.getHorario().get(0));
+                    db.collection("peluqueria/"+ peluqueria +"/cita/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             citas = new ArrayList<>();
@@ -103,7 +106,7 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
         Intent in = new Intent(getActivity(), EditCitaPeluqueriaActivity.class);
         in.putExtra("email",this.usuarioEmail);
         in.putExtra("nombre",this.usuarioNombres);
-        in.putExtra("peluqueria",this.Peluqueria);
+        in.putExtra("peluqueria",this.peluqueria);
         in.putExtra("id",ca.Id);
         startActivity(in);
     }
@@ -112,7 +115,7 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
         Intent in = new Intent(getActivity(), NewCitaPeluqueriaActivity.class);
         in.putExtra("email",this.usuarioEmail);
         in.putExtra("nombre",this.usuarioNombres);
-        in.putExtra("peluqueria",this.Peluqueria);
+        in.putExtra("peluqueria",this.peluqueria);
         startActivity(in);
     }
 }

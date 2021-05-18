@@ -20,6 +20,7 @@ import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
 import com.ITTDAM.bookncut.models.CitasUsuario;
+import com.ITTDAM.bookncut.models.Peluqueria;
 import com.ITTDAM.bookncut.models.Servicios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,8 +31,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +52,7 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
     private String usuarioNombres;
     private String usuarioPeluqeria;
     private String Id;
+    Peluqueria Peluqueria;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -63,6 +69,13 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
             usuarioPeluqeria = extras.getString("peluqueria");
             Id = extras.getString("id");
         }
+        dbF.document("peluqueria/"+usuarioPeluqeria).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Peluqueria = documentSnapshot.toObject(com.ITTDAM.bookncut.models.Peluqueria.class);
+                Peluqueria.Id=documentSnapshot.getId();
+            }
+        });
 
         dia = findViewById(R.id.txtVDiaEditCitaPeluqueria);
         dia.setOnClickListener(this::chooseDate);
@@ -112,7 +125,64 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                final String selectedDate = day + "/" + (month+1) + "/" + year;
+                try {
+                    SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+                    Date dt1= null;
+
+                    dt1 = format1.parse(selectedDate);
+
+                    DateFormat format2=new SimpleDateFormat("EEEE");
+                    String finalDay=format2.format(dt1);
+                    List<String> horasDeArray=null;
+                    String[] horas=null;
+                    switch (finalDay){
+                        case "Monday":
+                            horas= Peluqueria.getHorario().get("lunes").split(",");
+
+                            break;
+                        case "Tuesday":
+                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            break;
+                        case "Wednesday":
+                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            break;
+                        case "Thursday":
+                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            break;
+                        case "Friday":
+                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            break;
+                        case "Saturday":
+                            horas = Peluqueria.getHorario().get("sabado").split(",");
+                            break;
+                        default:
+                            horas= new String[]{"Selecciona un dia"};
+                            Toast.makeText(EditCitaPeluqueriaActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                    horasDeArray=  new ArrayList(Arrays.asList(horas));
+                    List<String> finalHorasDeArray = horasDeArray;
+                    dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for(DocumentSnapshot doc : queryDocumentSnapshots){
+                                CitasPeluqueria cita = doc.toObject(CitasPeluqueria.class);
+                                Log.d(TAG, "onSuccess: "+finalHorasDeArray.indexOf(cita.getHora()));
+                                if(finalHorasDeArray.indexOf(cita.getHora())>0)
+                                    finalHorasDeArray.remove(finalHorasDeArray.indexOf(cita.getHora()));
+                                if(finalHorasDeArray.indexOf(cita.getHora())==0)
+                                    finalHorasDeArray.remove(0);
+                            }
+                        }
+                    });
+                    hora.setAdapter(new ArrayAdapter<String>(EditCitaPeluqueriaActivity.this, android.R.layout.simple_list_item_1,finalHorasDeArray));
+
+                    Log.d(TAG, "onDateSet: "+finalDay);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 dia.setText(selectedDate);
             }
         });

@@ -8,14 +8,14 @@ public class Peluqueria {
     private String nombre;
     private String ubicacion;
     private String propietario;
-    private String[] horario;
+    private Map<String,String> horario;
     public String Id;
 
-    public Peluqueria(String nombre, String ubicacion, String propietario, String[] dias) {
+    public Peluqueria(String nombre, String ubicacion, String propietario, Map<String,String> horario) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.propietario = propietario;
-        this.horario = dias;
+        this.horario = horario;
     }
 
     public Peluqueria() {
@@ -35,7 +35,7 @@ public class Peluqueria {
 
 
 
-    public String[] getDias() {
+    public Map<String,String> getHorario() {
         return horario;
     }
 }

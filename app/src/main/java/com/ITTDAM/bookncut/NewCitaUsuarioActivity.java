@@ -25,14 +25,20 @@ import com.ITTDAM.bookncut.models.Servicios;
 import com.ITTDAM.bookncut.ui.citas.NewCitaPeluqueriaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +52,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
     Spinner peluqueriaSpn;
     Database db;
     FirebaseFirestore dbF = FirebaseFirestore.getInstance();
-    String Peluqueria;
+    Peluqueria Peluqueria;
     String usuarioEmail;
     String usuarioNombres;
 
@@ -68,26 +74,29 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
         dia.setOnClickListener(this::chooseDate);
         hora = findViewById(R.id.spnHoraCitaUsuario);
         servicio = findViewById(R.id.spnServicioCitasUsuario);
-        hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona la hora","9:00","10:00","11:00","12:00","13:00","15:00","16:00","17:00","18:00","19:00"))));
+        hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona el dia"))));
 
-        List<String> servicios = new ArrayList<>();
-        servicios.add("Selecciona un servicio");
+        List<String> nombresServicios = new ArrayList<>();
+        List<Servicios> servicios = new ArrayList<>();
+        nombresServicios.add("Selecciona un servicio");
         dbF.collection("peluqueria/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    Peluqueria = documentSnapshot.getId();
-                    dbF.collection("peluqueria/"+Peluqueria+"/servicio/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    Peluqueria = documentSnapshot.toObject(com.ITTDAM.bookncut.models.Peluqueria.class);
+                    Peluqueria.Id=documentSnapshot.getId();
+                    dbF.collection("peluqueria/"+Peluqueria.Id+"/servicio/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            Log.d(TAG, "onSuccess: Fuerda del for"+Peluqueria);
+                            Log.d(TAG, "onSuccess: Fuerda del for"+Peluqueria.Id);
                             for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                                 Log.d(TAG, "onSuccess: Dentro");
                                 Servicios servicio = documentSnapshot.toObject(Servicios.class);
                                 Log.d(TAG, "onSuccess: "+ documentSnapshot.toObject(Servicios.class).getNombre());
-                                servicios.add(servicio.getNombre());
+                                servicios.add(servicio);
+                                nombresServicios.add(servicio.getNombre());
                             }
-                            servicio.setAdapter(new ArrayAdapter<String>(NewCitaUsuarioActivity.this, android.R.layout.simple_list_item_1,servicios));
+                            servicio.setAdapter(new ArrayAdapter<String>(NewCitaUsuarioActivity.this, android.R.layout.simple_list_item_1,nombresServicios));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -105,16 +114,72 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
 
 
-
     }
 
     //Método para poder escoger fecha en la activity de crear nueva cita usuario
     public void chooseDate(View view){
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            public void onDateSet(DatePicker datePicker,int year, int month, int day) {
                 // +1 because January is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                final String selectedDate = day + "/" + (month+1) + "/" + year;
+                try {
+                SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+                Date dt1= null;
+
+                    dt1 = format1.parse(selectedDate);
+
+                DateFormat format2=new SimpleDateFormat("EEEE");
+                String finalDay=format2.format(dt1);
+                    List<String> horasDeArray=null;
+                    String[] horas=null;
+                    switch (finalDay){
+                    case "Monday":
+                       horas= Peluqueria.getHorario().get("lunes").split(",");
+
+                        break;
+                    case "Tuesday":
+                        horas = Peluqueria.getHorario().get("martes").split(",");
+                        break;
+                        case "Wednesday":
+                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            break;
+                        case "Thursday":
+                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            break;
+                        case "Friday":
+                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            break;
+                        case "Saturday":
+                            horas = Peluqueria.getHorario().get("sabado").split(",");
+                            break;
+                        default:
+                            horas= new String[]{"Selecciona un dia"};
+                            Toast.makeText(NewCitaUsuarioActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
+
+
+                }
+                    horasDeArray=  new ArrayList(Arrays.asList(horas));
+                    List<String> finalHorasDeArray = horasDeArray;
+                    dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for(DocumentSnapshot doc : queryDocumentSnapshots){
+                                CitasPeluqueria cita = doc.toObject(CitasPeluqueria.class);
+                                Log.d(TAG, "onSuccess: "+finalHorasDeArray.indexOf(cita.getHora()));
+                                if(finalHorasDeArray.indexOf(cita.getHora())>0)
+                                finalHorasDeArray.remove(finalHorasDeArray.indexOf(cita.getHora()));
+                                if(finalHorasDeArray.indexOf(cita.getHora())==0)
+                                    finalHorasDeArray.remove(0);
+                            }
+                        }
+                    });
+                hora.setAdapter(new ArrayAdapter<String>(NewCitaUsuarioActivity.this, android.R.layout.simple_list_item_1,finalHorasDeArray));
+
+                    Log.d(TAG, "onDateSet: "+finalDay);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 dia.setText(selectedDate);
             }
         });
@@ -124,11 +189,11 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void createCita(View view){
-        if(!dia.getText().toString().isEmpty()&&servicio.getSelectedItem()!="Selecciona el servicio"&&hora.getSelectedItem()!="Selecciona la hora"){
-            CitasUsuario cita = new CitasUsuario(Peluqueria,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
+        if(!dia.getText().toString().isEmpty()&&!servicio.getSelectedItem().equals("Selecciona el servicio")&&!hora.getSelectedItem().equals("Selecciona la hora")){
+            CitasUsuario cita = new CitasUsuario(Peluqueria.Id,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
                 CitasPeluqueria citaPeluqueria = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres)));
                 db.crearCitaUsuario(this.usuarioEmail,cita);
-                db.crearCita(Peluqueria,citaPeluqueria);
+                db.crearCita(Peluqueria.Id,citaPeluqueria);
                 Toast.makeText(this,"Se creo la cita", Toast.LENGTH_SHORT).show();
                 finish();
         }

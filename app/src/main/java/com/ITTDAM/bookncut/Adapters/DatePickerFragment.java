@@ -23,14 +23,22 @@ public class DatePickerFragment extends DialogFragment {
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
+
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(),listener,  year, month, day);
+        // Min and max date
+        c.setTime(c.getTime());
+        dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+        c.set(Calendar.MONTH, c.getTime().getMonth()+1);
+        dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(),listener,  year, month, day);
+        return dialog;
     }
 
 }
