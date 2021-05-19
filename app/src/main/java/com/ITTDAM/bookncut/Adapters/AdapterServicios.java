@@ -77,7 +77,7 @@ public class AdapterServicios extends ListAdapter<Servicios, AdapterServicios.Vi
         @Override
         public boolean areContentsTheSame(@NonNull Servicios oldItem, @NonNull Servicios newItem) {
             return oldItem.getNombre().equals(newItem.getNombre()) &&
-                    oldItem.getDuracion().equals(newItem.getDuracion()) &&
+                    oldItem.getDuracion()==(newItem.getDuracion()) &&
                     oldItem.getPrecio().equals(newItem.getPrecio());
         }
     }

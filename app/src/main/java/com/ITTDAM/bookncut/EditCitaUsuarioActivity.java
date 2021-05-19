@@ -53,6 +53,7 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
     private String usuarioNombres;
     private String Id;
     Peluqueria Peluqueria=new Peluqueria();
+    private String diainicial="",horainicial="";
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -86,7 +87,7 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
 
         //Sacamos y recorremos los servicios de la peluqueria desde Firestore y los pintamos en cada item
         List<String> servicios = new ArrayList<>();
-        dbF.collection("peluqueria/"+Peluqueria+"/servicio").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        dbF.collection("peluqueria/"+Peluqueria.Id+"/servicio").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
@@ -102,12 +103,14 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
                 Log.e(TAG,"Error",e);
             }
         });
-
+        //busca la cita del usuario y obntiene los datos
         dbF.document("usuario/"+usuarioEmail+"/citasusuario/"+Id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
                     CitasUsuario cita = documentSnapshot.toObject(CitasUsuario.class);
+                    diainicial=cita.getDia();
+                    horainicial=cita.getHora();
                     dia.setText(cita.getDia());
                     servicio.setSelection(servicios.indexOf(cita.getServicio()));
                     hora.setSelection(((ArrayAdapter<String>)hora.getAdapter()).getPosition(cita.getHora()));
@@ -203,22 +206,23 @@ public class EditCitaUsuarioActivity extends AppCompatActivity {
     public void modificarCita(View v){
 
         if(!dia.getText().toString().isEmpty()){
-/*            dbF.collection("peluqueria/"+Peluqueria+"/cita/").whereEqualTo("usuario",(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres))).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+           dbF.collection("peluqueria/"+Peluqueria.Id+"/cita/").whereEqualTo("dia",diainicial).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         CitasPeluqueria citasPeluqueria = documentSnapshot.toObject(CitasPeluqueria.class);
-                        if(dia.getText().toString().equals(citasPeluqueria.getDia())&&hora.getSelectedItem().equals(citasPeluqueria.getHora())){
-                            CitasPeluqueria cita = new CitasPeluqueria(dia.getText().toString(), servicio.getSelectedItem()+"", hora.getSelectedItem()+"", false, (Map) Map.ofEntries(new AbstractMap.SimpleEntry<String, String>("usuario", usuarioEmail), new AbstractMap.SimpleEntry<String, String>("nombre", usuarioNombres)));
-                            db.modificarCita(Peluqueria, cita, documentSnapshot.getId());
+                        if(citasPeluqueria.getHora().equals(horainicial)){
+                            CitasPeluqueria citasPeluqueria1 = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuarioEmail),new AbstractMap.SimpleEntry<String,String>("nombre",usuarioNombres)));
+                            db.modificarCita(Peluqueria.Id,citasPeluqueria1,documentSnapshot.getId());
                         }
 
                     }
                 }
-            });*/
-            CitasUsuario cita = new CitasUsuario(Peluqueria.Id,dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false);
+            });
+            CitasUsuario cita = new CitasUsuario(Peluqueria.Id,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
             db.modificarCitaUsuario(usuarioEmail,cita,Id);
+
 
             Toast.makeText(EditCitaUsuarioActivity.this,"Se modifico la cita", Toast.LENGTH_SHORT).show();
             finish();

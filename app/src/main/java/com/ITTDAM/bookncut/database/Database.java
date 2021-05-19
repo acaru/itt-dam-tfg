@@ -248,6 +248,8 @@ public class Database {
     public void modificarCitaUsuario(String usuario, CitasUsuario datos, String id){
 
         Map<String, Object> cita = new HashMap<>();
+        cita.put(SERVICIO_KEY,datos.getServicio());
+        cita.put(PELUQUERIA_KEY,datos.getPeluqueria());
         cita.put(DIA_KEY, datos.getDia());
         cita.put(HORA_KEY, datos.getHora());
         cita.put(FINALIZADO_KEY, datos.getFinalizado());

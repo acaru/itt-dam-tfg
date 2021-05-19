@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -55,6 +56,11 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
     Peluqueria Peluqueria;
     String usuarioEmail;
     String usuarioNombres;
+    List<String> horasDeArray=null;
+    List<String> finalHorasDeArray;
+    Boolean disponible=false;
+    List<String> nombresServicios;
+    List<Servicios> servicios;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -76,8 +82,8 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
         servicio = findViewById(R.id.spnServicioCitasUsuario);
         hora.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new ArrayList<>(List.of("Selecciona el dia"))));
 
-        List<String> nombresServicios = new ArrayList<>();
-        List<Servicios> servicios = new ArrayList<>();
+         nombresServicios= new ArrayList<>();
+        servicios = new ArrayList<>();
         nombresServicios.add("Selecciona un servicio");
         dbF.collection("peluqueria/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -114,6 +120,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
 
 
+
     }
 
     //Método para poder escoger fecha en la activity de crear nueva cita usuario
@@ -131,7 +138,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
                 DateFormat format2=new SimpleDateFormat("EEEE");
                 String finalDay=format2.format(dt1);
-                    List<String> horasDeArray=null;
+
                     String[] horas=null;
                     switch (finalDay){
                     case "Monday":
@@ -160,7 +167,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
                 }
                     horasDeArray=  new ArrayList(Arrays.asList(horas));
-                    List<String> finalHorasDeArray = horasDeArray;
+                    finalHorasDeArray = horasDeArray;
                     dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -181,6 +188,38 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 dia.setText(selectedDate);
+                /*hora.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        int index =nombresServicios.indexOf(servicio.getSelectedItem());
+                        if(servicio.getSelectedItem().equals(nombresServicios.get(index))){
+                            int duracion =servicios.get(index-1).getDuracion();
+                            if(finalHorasDeArray!=null){
+                                if(hora.getSelectedItem().equals(finalHorasDeArray.get(position))){
+                                    int response= 1;
+                                    for(int k= position;k<finalHorasDeArray.size()-1;k++){
+                                        if(finalHorasDeArray.get(k+1).equals(horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+1))){
+                                            response++;
+                                        }
+                                    }
+                                    if(duracion<=response){
+                                        disponible=true;
+
+                                    }
+                                    Log.d(TAG, "onItemSelected: "+disponible+duracion+" "+response);
+                                }
+                            }
+                            else{
+                                Toast.makeText(NewCitaUsuarioActivity.this,"Selecciona un dia", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });*/
             }
         });
 
@@ -202,4 +241,6 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
             Log.d(TAG,"Error Datos incompletos");
         }
     }
+
+
 }

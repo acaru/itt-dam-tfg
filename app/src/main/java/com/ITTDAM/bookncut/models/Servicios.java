@@ -3,10 +3,10 @@ package com.ITTDAM.bookncut.models;
 public class Servicios {
     private String nombre;
     private Double precio;
-    private Double duracion;
+    private int duracion;
     public String Id;
 
-    public Servicios(String nombre, Double precio, Double duracion) {
+    public Servicios(String nombre, Double precio, int duracion) {
         this.nombre = nombre;
         this.precio = precio;
         this.duracion = duracion;
@@ -23,7 +23,7 @@ public class Servicios {
         return precio;
     }
 
-    public Double getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 }

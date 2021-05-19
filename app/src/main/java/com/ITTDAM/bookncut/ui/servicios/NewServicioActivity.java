@@ -39,7 +39,7 @@ public class NewServicioActivity extends AppCompatActivity {
     //Metodo para que la peluqueria cree nuevos servicios
     public void guardarServicio(View view){
         if(!nombre.getText().toString().isEmpty()&&!precio.getText().toString().isEmpty()&&!duracion.getText().toString().isEmpty()){
-            Servicios servicios = new Servicios(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),Double.parseDouble(duracion.getText().toString()));
+            Servicios servicios = new Servicios(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),Integer.parseInt(duracion.getText().toString()));
             db.crearServicio(Peluqueria,servicios);
             Toast.makeText(this,"Se creo el nuevo servicio", Toast.LENGTH_SHORT).show();
             finish();

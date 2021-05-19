@@ -67,7 +67,7 @@ public class EditServicioActivity extends AppCompatActivity {
     }
     public void modificarServicio(View v){
         if(!nombre.getText().toString().isEmpty()&&!precio.getText().toString().isEmpty()&&!duracion.getText().toString().isEmpty()){
-            Servicios servicio = new Servicios(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),Double.parseDouble(duracion.getText().toString()));
+            Servicios servicio = new Servicios(nombre.getText().toString(),Double.parseDouble(precio.getText().toString()),Integer.parseInt(duracion.getText().toString()));
             db.modificarServicio(Peluqueria,servicio,Id);
             Toast.makeText(this,"Se modifico el servicio", Toast.LENGTH_SHORT).show();
             finish();
