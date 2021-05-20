@@ -53,6 +53,7 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
     private String usuarioPeluqeria;
     private String Id;
     Peluqueria Peluqueria;
+    private String diainicial="",horainicial="";
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -106,6 +107,8 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 CitasPeluqueria cita = documentSnapshot.toObject(CitasPeluqueria.class);
                 dia.setText(cita.getDia());
+                diainicial=cita.getDia();
+                horainicial=cita.getHora();
                 servicio.setSelection(servicios.indexOf(cita.getServicio()));
                 hora.setSelection(((ArrayAdapter<String>)hora.getAdapter()).getPosition(cita.getHora()));
                 usuario.setText(cita.getUsuario().get("nombre")+"");
@@ -156,6 +159,25 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
                         case "Saturday":
                             horas = Peluqueria.getHorario().get("sabado").split(",");
                             break;
+                        case "lunes":
+                            horas = Peluqueria.getHorario().get("lunes").split(",");
+                            break;
+                        case "martes":
+                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            break;
+                        case "miercoles":
+                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            break;
+                        case "jueves":
+                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            break;
+                        case "viernes":
+                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            break;
+                        case "Sabado":
+                            horas= Peluqueria.getHorario().get("sabado").split(",");
+
+                            break;
                         default:
                             horas= new String[]{"Selecciona un dia"};
                             Toast.makeText(EditCitaPeluqueriaActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
@@ -195,20 +217,25 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
         if(!dia.getText().toString().isEmpty()&&!email.getText().toString().isEmpty()&&!usuario.getText().toString().isEmpty()){
             CitasPeluqueria cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",email.getText().toString()),new AbstractMap.SimpleEntry<String,String>("nombre",usuario.getText().toString())));
             db.modificarCita(usuarioPeluqeria,cita,Id);
-            /*dbF.collection("usuario/"+email.getText().toString()+"/citausuario/").whereEqualTo("peluqueria",Id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            dbF.collection("usuario/"+email.getText().toString()+"/citasusuario/").whereEqualTo("dia",diainicial).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         CitasUsuario citasUsuario = documentSnapshot.toObject(CitasUsuario.class);
-                        if(cita.getDia().equals(citasUsuario.getDia())&&cita.getHora().equals(citasUsuario.getDia())){
-                            CitasUsuario cita = new CitasUsuario(usuarioPeluqeria,dia.getText().toString(), servicio.getSelectedItem()+"", hora.getSelectedItem()+"", false);
-                            db.modificarCitaUsuario(email.getText().toString(), cita, documentSnapshot.getId(),usuario.getText().toString());
+                        if(citasUsuario.getHora().equals(horainicial)){
+                            CitasUsuario modif = new CitasUsuario(Peluqueria.Id,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
+                            db.modificarCitaUsuario(email.getText().toString(),modif,documentSnapshot.getId());
                         }
 
                     }
                 }
-            });*/
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    Log.d(TAG, "onFailure: Error",e);
+                }
+            });
 
             Toast.makeText(EditCitaPeluqueriaActivity.this,"Se modifico la cita", Toast.LENGTH_SHORT).show();
             finish();
@@ -221,6 +248,20 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
     }
 
     public void finalizarCita(View v){
+        dbF.collection("usuario/"+email.getText().toString()+"/citasusuario/").whereEqualTo("dia",diainicial).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.R)
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    CitasUsuario citasUsuario = documentSnapshot.toObject(CitasUsuario.class);
+                    if(citasUsuario.getHora().equals(horainicial)){
+                        dbF.document("usuario/"+email.getText().toString()+"/citasusuario/"+documentSnapshot.getId()).update("finalizado",true);
+                    }
+
+                }
+            }
+        });
+
         dbF.document("peluqueria/"+usuarioPeluqeria+"/cita/"+Id).update("finalizado",true);
         Toast.makeText(EditCitaPeluqueriaActivity.this,"Se finalizo la cita", Toast.LENGTH_SHORT).show();
         finish();
@@ -228,6 +269,24 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
     }
 
     public void borrarCita(View v){
+        dbF.collection("usuario/"+email.getText().toString()+"/citasusuario/").whereEqualTo("dia",diainicial).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.R)
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    CitasUsuario citasUsuario = documentSnapshot.toObject(CitasUsuario.class);
+                    if(citasUsuario.getHora().equals(horainicial)){
+                        dbF.document("usuario/"+email.getText().toString()+"/citasusuario/"+documentSnapshot.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d(TAG, "onSuccess: Se borro la cita del usuario");
+                            }
+                        });
+                    }
+
+                }
+            }
+        });
         dbF.document("peluqueria/"+usuarioPeluqeria+"/cita/"+Id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

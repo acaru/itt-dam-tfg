@@ -142,6 +142,25 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                         case "Saturday":
                             horas = Peluqueria.getHorario().get("sabado").split(",");
                             break;
+                        case "lunes":
+                            horas = Peluqueria.getHorario().get("lunes").split(",");
+                            break;
+                        case "martes":
+                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            break;
+                        case "miercoles":
+                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            break;
+                        case "jueves":
+                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            break;
+                        case "viernes":
+                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            break;
+                        case "Sabado":
+                            horas= Peluqueria.getHorario().get("sabado").split(",");
+
+                            break;
                         default:
                             horas= new String[]{"Selecciona un dia"};
                             Toast.makeText(NewCitaPeluqueriaActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
@@ -196,7 +215,7 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                 cita = new CitasPeluqueria(dia.getText().toString(),servicio.getSelectedItem()+"",hora.getSelectedItem()+"",false,(Map) Map.ofEntries( new AbstractMap.SimpleEntry<String,String>("usuario",usuario.getText().toString()),new AbstractMap.SimpleEntry<String,String>("nombre",nombre.getText().toString())));
                 db.crearCita(usuarioPeluqeria,cita);
                 CitasUsuario citU = new CitasUsuario(usuarioPeluqeria,dia.getText().toString(),hora.getSelectedItem()+"",servicio.getSelectedItem()+"",false);
-                db.crearCitaUsuario(nombre.getText().toString(),citU);
+                db.crearCitaUsuario(usuario.getText().toString(),citU);
                 Toast.makeText(this,"Se creo la cita", Toast.LENGTH_SHORT).show();
                 finish();
             }

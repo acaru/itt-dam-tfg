@@ -160,12 +160,33 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                         case "Saturday":
                             horas = Peluqueria.getHorario().get("sabado").split(",");
                             break;
+
+                        case "lunes":
+                            horas = Peluqueria.getHorario().get("lunes").split(",");
+                            break;
+                        case "martes":
+                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            break;
+                        case "miercoles":
+                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            break;
+                        case "jueves":
+                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            break;
+                        case "viernes":
+                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            break;
+                        case "Sabado":
+                            horas= Peluqueria.getHorario().get("sabado").split(",");
+
+                            break;
                         default:
                             horas= new String[]{"Selecciona un dia"};
                             Toast.makeText(NewCitaUsuarioActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
 
 
                 }
+                    Log.d(TAG, "onDateSet: "+finalDay);
                     horasDeArray=  new ArrayList(Arrays.asList(horas));
                     finalHorasDeArray = horasDeArray;
                     dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -198,6 +219,8 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                                 if(hora.getSelectedItem().equals(finalHorasDeArray.get(position))){
                                     int response= 1;
                                     for(int k= position;k<finalHorasDeArray.size()-1;k++){
+                                        Log.d(TAG, "onItemSelected: "+finalHorasDeArray.get(k+1));
+                                        Log.d(TAG, "onItemSelected: "+horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+response));
                                         if(finalHorasDeArray.get(k+1).equals(horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+1))){
                                             response++;
                                         }
