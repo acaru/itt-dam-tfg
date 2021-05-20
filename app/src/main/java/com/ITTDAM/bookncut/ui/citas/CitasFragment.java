@@ -80,6 +80,7 @@ public class CitasFragment extends Fragment implements AdapterCitasPeluqueria.My
                             for(QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
                                     CitasPeluqueria cita = documentSnapshot1.toObject(CitasPeluqueria.class);
                                     cita.Id=documentSnapshot1.getId();
+                                    if(!cita.getFinalizado())
                                     citas.add(cita);
                             }
                             //Pinta en el RecyclerView todas las peluquerias del propietario

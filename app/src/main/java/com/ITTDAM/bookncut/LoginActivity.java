@@ -68,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        if(Email.getText().toString().equals("root@root.com")){
+                            Intent intent=new Intent(LoginActivity.this,MainRootActivity.class);
+                            startActivity(intent);
+                        }
                         db.document("usuario/"+Email.getText().toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {

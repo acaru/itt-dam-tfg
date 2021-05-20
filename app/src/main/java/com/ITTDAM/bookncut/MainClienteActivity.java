@@ -63,6 +63,7 @@ public class MainClienteActivity extends AppCompatActivity implements AdapterCit
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                     CitasUsuario citasusuario = documentSnapshot.toObject(CitasUsuario.class);
                     citasusuario.Id=documentSnapshot.getId();
+                    if(!citasusuario.getFinalizado())
                     citas.add(citasusuario);
                 }
                 Log.d(TAG, "onEvent: "+citas.size());
