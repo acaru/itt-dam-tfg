@@ -14,10 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ITTDAM.bookncut.Adapters.AdapterEncargosAdmin;
 import com.ITTDAM.bookncut.Adapters.AdapterProductos;
 import com.ITTDAM.bookncut.R;
+import com.ITTDAM.bookncut.models.EncargosAdmin;
 import com.ITTDAM.bookncut.models.Productos;
-import com.ITTDAM.bookncut.ui.citas.EditCitaPeluqueriaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.EventListener;
@@ -31,15 +32,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductosFragment extends Fragment implements AdapterProductos.MyListener{
+public class ProductosFragment extends Fragment implements AdapterProductos.MyListener,AdapterEncargosAdmin.MyListener{
 
     public static final String TAG = "MAIN PRODUCTOS ADMIN";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String usuarioEmail;
     private String usuarioNombres;
     private RecyclerView rvProductos;
+    private RecyclerView rvEncargos;
     private AdapterProductos adapterProductos;
+    private AdapterEncargosAdmin adapterEncargosAdmin;
     private List<Productos> productos;
+    private List<EncargosAdmin> encargosAdmins;
     private String Peluqueria;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,22 +63,42 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
     @Override
     public void onStart() {
         super.onStart();
+        rvEncargos=getActivity().findViewById(R.id.rvEncargos);
         rvProductos=getActivity().findViewById(R.id.rvProductos);
+        rvEncargos.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductos.setLayoutManager(new LinearLayoutManager(getActivity()));
         db.collection("peluqueria").whereEqualTo("propietario",usuarioEmail).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException e) {
                 for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
                     Peluqueria=documentSnapshot.getId();
+                    db.collection("peluqueria/"+documentSnapshot.getId()+"/encargos/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            encargosAdmins = new ArrayList<>();
+                            for(QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots){
+                                EncargosAdmin encargo = queryDocumentSnapshot.toObject(EncargosAdmin.class);
+                                encargo.Id=queryDocumentSnapshot.getId();
+                                if(!encargo.isPagado())
+                                encargosAdmins.add(encargo);
+                            }
+                            adapterEncargosAdmin = new AdapterEncargosAdmin(encargosAdmins, ProductosFragment.this);
+                            adapterEncargosAdmin.submitList(encargosAdmins);
+                            rvEncargos.setAdapter(adapterEncargosAdmin);
+                        }
+                    });
                     db.collection("peluqueria/"+documentSnapshot.getId()+"/producto/").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             productos = new ArrayList<>();
                             for(QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
                                 Productos producto = documentSnapshot1.toObject(Productos.class);
+
                                 producto.Id=documentSnapshot1.getId();
                                 productos.add(producto);
+
                             }
+
                             adapterProductos = new AdapterProductos(productos, ProductosFragment.this);
                             adapterProductos.submitList(productos);
                             rvProductos.setAdapter(adapterProductos);
@@ -107,5 +131,10 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
         in.putExtra("nombre",this.usuarioNombres);
         in.putExtra("peluqueria",this.Peluqueria);
         startActivity(in);
+    }
+
+    @Override
+    public void onClick(EncargosAdmin ca) {
+
     }
 }

@@ -6,25 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".ui.productos.ProductosFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:id="@+id/rvProductos"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentPaddingBottom="10sp"
+                app:contentPaddingTop="10sp">
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/rvProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="550dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/rvEncargos"
+                    android:layout_width="match_parent"
+                    android:layout_height="550dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button9"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="Nuevo Producto"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvProductos" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
