@@ -37,6 +37,7 @@ public class MainAdminActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_servicios, R.id.nav_productos)
                 .setDrawerLayout(drawer)
                 .build();
+        //Depende de qué fragmento selecciones, se muestra uno u otro
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);

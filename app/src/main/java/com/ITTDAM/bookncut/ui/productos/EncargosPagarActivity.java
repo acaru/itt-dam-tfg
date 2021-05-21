@@ -43,7 +43,7 @@ public class EncargosPagarActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 EncargosAdmin encargo = documentSnapshot.toObject(EncargosAdmin.class);
-                aPagar.setText(encargo.getPrecio()+"€");
+                aPagar.setText(encargo.getPrecioTotal()+"€");
                 listaProductos.setAdapter(new ArrayAdapter<String>(EncargosPagarActivity.this,R.layout.support_simple_spinner_dropdown_item,encargo.getProductos()));
 
             }

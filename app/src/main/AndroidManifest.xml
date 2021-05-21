@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookncut.NoActionBar">
-        <activity android:name=".MainClienteActivity2"></activity>
+        <activity android:name=".encargos.ModificarEncargoActivity"></activity>
+        <activity android:name=".encargos.EncargoAddActivity" />
+        <activity android:name=".MainClienteActivity2" />
         <activity android:name=".ui.productos.EncargosPagarActivity" />
         <activity android:name=".EditPeluRootActivity" />
         <activity android:name=".NewPeluRootActivity" />

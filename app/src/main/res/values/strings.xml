@@ -11,4 +11,6 @@
     <string name="menu_home">Citas</string>
     <string name="menu_servicios">Servicios</string>
     <string name="menu_productos">Productos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

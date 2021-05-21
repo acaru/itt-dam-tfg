@@ -6,14 +6,14 @@ import java.util.Map;
 public class EncargosAdmin {
     private String usuarioEmail;
     private List<String> productos;
-    private Double precio;
+    private Double preciototal;
     private boolean pagado;
     public String Id;
 
-    public EncargosAdmin(String usuarioEmail, List<String>productos, Double precio,boolean pagado) {
+    public EncargosAdmin(String usuarioEmail, List<String>productos, Double preciototal,boolean pagado) {
         this.usuarioEmail = usuarioEmail;
         this.productos=productos;
-        this.precio = precio;
+        this.preciototal = preciototal;
         this.pagado= pagado;
     }
 
@@ -28,8 +28,8 @@ public class EncargosAdmin {
         return productos;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double getPrecioTotal() {
+        return preciototal;
     }
 
     public boolean isPagado() {

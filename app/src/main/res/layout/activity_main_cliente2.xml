@@ -10,6 +10,7 @@
         android:id="@+id/tabViewMainCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/vpCliente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,31 +20,37 @@
             android:id="@+id/tabCita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Citas"
-            android:icon="@drawable/ic_citas"/>
+            android:icon="@drawable/ic_citas"
+            android:text="Citas" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabProductos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Productos"
-            android:icon="@drawable/ic_productos"/>
+            android:icon="@drawable/ic_productos"
+            android:text="Productos" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabEncargo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Encargo"
-            android:icon="@drawable/ic_encargos"/>
+            android:icon="@drawable/ic_encargos"
+            android:text="Encargo" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpCliente"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabViewMainCliente" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tabViewMainCliente,vpCliente" />
 </androidx.constraintlayout.widget.ConstraintLayout>

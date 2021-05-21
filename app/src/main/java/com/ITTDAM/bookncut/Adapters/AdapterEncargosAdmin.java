@@ -38,7 +38,7 @@ public class AdapterEncargosAdmin extends ListAdapter<EncargosAdmin, AdapterEnca
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final EncargosAdmin EncargosAdmin = getCurrentList().get(position);
         holder.producto.setText("Encargo de: " +EncargosAdmin.getUsuarioEmail());
-        holder.precio.setText("Total: "+ EncargosAdmin.getPrecio()+"€");
+        holder.precio.setText("Total: "+ EncargosAdmin.getPrecioTotal()+"€");
         if(!isSearchList)
             holder.baseview.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,7 +76,7 @@ public class AdapterEncargosAdmin extends ListAdapter<EncargosAdmin, AdapterEnca
         public boolean areContentsTheSame(@NonNull EncargosAdmin oldItem, @NonNull EncargosAdmin newItem) {
             return oldItem.getUsuarioEmail().equals(newItem.getUsuarioEmail()) &&
                     oldItem.getProductos().equals(newItem.getProductos()) &&
-                    oldItem.getPrecio().equals(newItem.getPrecio());
+                    oldItem.getPrecioTotal().equals(newItem.getPrecioTotal());
         }
     }
 

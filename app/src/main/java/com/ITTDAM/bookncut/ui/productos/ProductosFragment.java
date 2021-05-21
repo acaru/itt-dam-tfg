@@ -67,8 +67,7 @@ public class ProductosFragment extends Fragment implements AdapterProductos.MyLi
         rvProductos=getActivity().findViewById(R.id.rvProductos);
         rvEncargos.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductos.setLayoutManager(new LinearLayoutManager(getActivity()));
-        db.collection("peluqueria").whereEqualTo("propietario",usuarioEmail).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
+        db.collection("peluqueria").whereEqualTo("propietario",usuarioEmail).addSnapshotListener(new EventListener<QuerySnapshot>() {            @Override
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException e) {
                 for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
                     Peluqueria=documentSnapshot.getId();
