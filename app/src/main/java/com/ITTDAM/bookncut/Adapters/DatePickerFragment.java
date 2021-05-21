@@ -13,9 +13,21 @@ public class DatePickerFragment extends DialogFragment {
 
     private DatePickerDialog.OnDateSetListener listener;
 
+    private int initialYear  = -1;
+    private int initialMonth = -1;
+    private int initialDay = -1;
+
     public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener listener) {
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setListener(listener);
+        return fragment;
+    }
+    public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener listener,int year,int month,int day) {
+        DatePickerFragment fragment = new DatePickerFragment();
+        fragment.setListener(listener);
+        fragment.initialYear=year;
+        fragment.initialMonth=month;
+        fragment.initialDay=day;
         return fragment;
     }
     public void setListener(DatePickerDialog.OnDateSetListener listener) {
@@ -27,11 +39,19 @@ public class DatePickerFragment extends DialogFragment {
 
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
-
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(),listener,  year, month, day);
+        // Initial selected value
+        if (initialYear == -1)
+            initialYear = year - 18;
+
+        if (initialMonth == -1)
+            initialMonth = c.get(Calendar.MONTH);
+
+        if (initialDay == -1)
+            initialDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(),listener,  initialYear, initialMonth, initialDay);
         // Min and max date
         c.setTime(c.getTime());
         dialog.getDatePicker().setMinDate(c.getTimeInMillis());

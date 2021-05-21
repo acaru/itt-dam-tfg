@@ -56,7 +56,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
     Peluqueria Peluqueria;
     String usuarioEmail;
     String usuarioNombres;
-    List<String> horasDeArray=null;
+    List<String> horasDeArray=  new ArrayList();
     List<String> finalHorasDeArray;
     Boolean disponible=false;
     List<String> nombresServicios;
@@ -142,42 +142,42 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                     String[] horas=null;
                     switch (finalDay){
                     case "Monday":
-                       horas= Peluqueria.getHorario().get("lunes").split(",");
+                       horas= (Peluqueria.getHorario().get("lunes")+"").split(",");
 
                         break;
                     case "Tuesday":
-                        horas = Peluqueria.getHorario().get("martes").split(",");
+                        horas = (Peluqueria.getHorario().get("martes")+"").split(",");
                         break;
                         case "Wednesday":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            horas = (Peluqueria.getHorario().get("miercoles")+"").split(",");
                             break;
                         case "Thursday":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            horas = (Peluqueria.getHorario().get("jueves")+"").split(",");
                             break;
                         case "Friday":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            horas = (Peluqueria.getHorario().get("viernes")+"").split(",");
                             break;
                         case "Saturday":
-                            horas = Peluqueria.getHorario().get("sabado").split(",");
+                            horas = (Peluqueria.getHorario().get("sabado")+"").split(",");
                             break;
 
                         case "lunes":
-                            horas = Peluqueria.getHorario().get("lunes").split(",");
+                            horas= (Peluqueria.getHorario().get("lunes")+"").split(",");
                             break;
                         case "martes":
-                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            horas = (Peluqueria.getHorario().get("martes")+"").split(",");
                             break;
                         case "miercoles":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            horas = (Peluqueria.getHorario().get("miercoles")+"").split(",");
                             break;
                         case "jueves":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            horas = (Peluqueria.getHorario().get("jueves")+"").split(",");
                             break;
                         case "viernes":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            horas = (Peluqueria.getHorario().get("viernes")+"").split(",");
                             break;
                         case "Sabado":
-                            horas= Peluqueria.getHorario().get("sabado").split(",");
+                            horas = (Peluqueria.getHorario().get("sabado")+"").split(",");
 
                             break;
                         default:
@@ -187,7 +187,10 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
                 }
                     Log.d(TAG, "onDateSet: "+finalDay);
-                    horasDeArray=  new ArrayList(Arrays.asList(horas));
+                    horasDeArray.add("Selecciona una hora");
+                    for(String hora:horas){
+                        horasDeArray.add(hora);
+                    }
                     finalHorasDeArray = horasDeArray;
                     dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -209,7 +212,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 dia.setText(selectedDate);
-                /*hora.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                hora.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         int index =nombresServicios.indexOf(servicio.getSelectedItem());
@@ -221,7 +224,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                                     for(int k= position;k<finalHorasDeArray.size()-1;k++){
                                         Log.d(TAG, "onItemSelected: "+finalHorasDeArray.get(k+1));
                                         Log.d(TAG, "onItemSelected: "+horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+response));
-                                        if(finalHorasDeArray.get(k+1).equals(horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+1))){
+                                        if(finalHorasDeArray.get(k+1).equals(horasDeArray.get(horasDeArray.indexOf(hora.getSelectedItem())+response))){
                                             response++;
                                         }
                                     }
@@ -242,7 +245,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> parent) {
 
                     }
-                });*/
+                });
             }
         });
 

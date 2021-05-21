@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent=new Intent(LoginActivity.this,MainRootActivity.class);
                             startActivity(intent);
                         }
+                        else
                         db.document("usuario/"+Email.getText().toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {

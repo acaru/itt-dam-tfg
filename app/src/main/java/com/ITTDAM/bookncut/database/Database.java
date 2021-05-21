@@ -67,15 +67,15 @@ public class Database {
         Map<String,Object> peluqueria = new HashMap<>();//constructor del documento de firestore (key, value)
         peluqueria.put(NOMBRE_KEY,datos.getNombre()); //obtienes los valores de la peluqueria que le pasamos por parametro y lo añade al constructor Firestore
         peluqueria.put(UBICACION_KEY,datos.getUbicacion());
-        peluqueria.put(PROPIETARIO_KEY,datos.getUbicacion());
-        peluqueria.put(HORARIO_KEY,datos.getUbicacion());
+        peluqueria.put(PROPIETARIO_KEY,datos.getPropietario());
+        peluqueria.put(HORARIO_KEY,datos.getHorario());
 
         //Obtiene la referencia del documento de FB de peluqueria y añade el documento que hemos creado con el método set (que añade y sobreescribe, si no existe lo crea, si existe sobreescribe)
         //en este proceso de añadir se utilizan dos métodos para comprobar si ha tenido éxito o no la inserción
         db.document("peluqueria/"+nombrePe).set(peluqueria).addOnSuccessListener(new OnSuccessListener<Void>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onSuccess(Void aVoid) {
+            public void onSuccess(Void avoid) {
                 Log.d(DATABASE,"Se creo la peluqueria");
                 Toast.makeText(contexto,"Se creo la peluqueria "+nombrePe, Toast.LENGTH_SHORT).show();
 
@@ -199,6 +199,31 @@ public class Database {
     }
 
     //modificar datos
+    public void modificarPeluqueria(String id,Peluqueria datos){
+        Map<String,Object> peluqueria = new HashMap<>();//constructor del documento de firestore (key, value)
+        peluqueria.put(NOMBRE_KEY,datos.getNombre()); //obtienes los valores de la peluqueria que le pasamos por parametro y lo añade al constructor Firestore
+        peluqueria.put(UBICACION_KEY,datos.getUbicacion());
+        peluqueria.put(PROPIETARIO_KEY,datos.getPropietario());
+        peluqueria.put(HORARIO_KEY,datos.getHorario());
+
+        //Obtiene la referencia del documento de FB de peluqueria y añade el documento que hemos creado con el método set (que añade y sobreescribe, si no existe lo crea, si existe sobreescribe)
+        //en este proceso de añadir se utilizan dos métodos para comprobar si ha tenido éxito o no la inserción
+        db.document("peluqueria/"+id).set(peluqueria).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onSuccess(Void avoid) {
+                Log.d(DATABASE,"Se creo la peluqueria");
+                Toast.makeText(contexto,"Se creo la peluqueria "+id, Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(contexto,"Error al insertar la peluqueria", Toast.LENGTH_SHORT).show();
+                Log.d(DATABASE,"Error "+e.getMessage());
+            }
+        });
+    }
     //se utiliza SET para que modifique solo los campos modificados y los no modificados los deja igual, en cambio UPDATE deberiamos de tener en cuenta que es lo que se modificó
     public void modificarServicio(String peluqueria, Servicios datos,String id){
         Map<String,Object> servicios = new HashMap<>();

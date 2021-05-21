@@ -124,41 +124,41 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                     String[] horas=null;
                     switch (finalDay){
                         case "Monday":
-                            horas= Peluqueria.getHorario().get("lunes").split(",");
+                            horas= String.valueOf(Peluqueria.getHorario().get("lunes")).split(",");
 
                             break;
                         case "Tuesday":
-                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("martes")).split(",");
                             break;
                         case "Wednesday":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("miercoles")).split(",");
                             break;
                         case "Thursday":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("jueves")).split(",");
                             break;
                         case "Friday":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("viernes")).split(",");
                             break;
                         case "Saturday":
-                            horas = Peluqueria.getHorario().get("sabado").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("sabado")).split(",");
                             break;
                         case "lunes":
-                            horas = Peluqueria.getHorario().get("lunes").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("lunes")).split(",");
                             break;
                         case "martes":
-                            horas = Peluqueria.getHorario().get("martes").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("martes")).split(",");
                             break;
                         case "miercoles":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("miercoles")).split(",");
                             break;
                         case "jueves":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("jueves")).split(",");
                             break;
                         case "viernes":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
+                            horas = String.valueOf(Peluqueria.getHorario().get("viernes")).split(",");
                             break;
                         case "Sabado":
-                            horas= Peluqueria.getHorario().get("sabado").split(",");
+                            horas= String.valueOf(Peluqueria.getHorario().get("sabado")).split(",");
 
                             break;
                         default:

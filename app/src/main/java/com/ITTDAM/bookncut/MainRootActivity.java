@@ -46,6 +46,8 @@ public class MainRootActivity extends AppCompatActivity implements AdapterPeluqu
                 }
                 peluquerias = new ArrayList<>();
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    Log.d(TAG, "onEvent: id"+documentSnapshot.getId());
+                    Log.d(TAG, "onEvent: horario"+documentSnapshot.get("horario"));
                     Peluqueria peluqueria = documentSnapshot.toObject(Peluqueria.class);
                     peluqueria.Id=documentSnapshot.getId();
                         peluquerias.add(peluqueria);
@@ -71,6 +73,8 @@ public class MainRootActivity extends AppCompatActivity implements AdapterPeluqu
 
     @Override
     public void onClick(Peluqueria ca) {
-
+        Intent i = new Intent(this,EditPeluRootActivity.class);
+        i.putExtra("id",ca.Id);
+        startActivity(i);
     }
 }

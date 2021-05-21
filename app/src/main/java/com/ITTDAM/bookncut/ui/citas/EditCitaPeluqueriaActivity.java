@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ITTDAM.bookncut.Adapters.DatePickerFragment;
+import com.ITTDAM.bookncut.EditCitaUsuarioActivity;
 import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.CitasPeluqueria;
@@ -106,6 +107,7 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 CitasPeluqueria cita = documentSnapshot.toObject(CitasPeluqueria.class);
+                setHora(cita.getDia());
                 dia.setText(cita.getDia());
                 diainicial=cita.getDia();
                 horainicial=cita.getHora();
@@ -123,88 +125,92 @@ public class EditCitaPeluqueriaActivity extends AppCompatActivity {
         });
     }
 
+    void setHora(String selectedDate){
+        try {
+            SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+            Date dt1= null;
+
+            dt1 = format1.parse(selectedDate);
+
+            DateFormat format2=new SimpleDateFormat("EEEE");
+            String finalDay=format2.format(dt1);
+            List<String> horasDeArray=null;
+            String[] horas=null;
+            switch (finalDay){
+                case "Monday":
+                    horas= String.valueOf(Peluqueria.getHorario().get("lunes")).split(",");
+
+                    break;
+                case "Tuesday":
+                    horas = String.valueOf(Peluqueria.getHorario().get("martes")).split(",");
+                    break;
+                case "Wednesday":
+                    horas = String.valueOf(Peluqueria.getHorario().get("miercoles")).split(",");
+                    break;
+                case "Thursday":
+                    horas = String.valueOf(Peluqueria.getHorario().get("jueves")).split(",");
+                    break;
+                case "Friday":
+                    horas = String.valueOf(Peluqueria.getHorario().get("viernes")).split(",");
+                    break;
+                case "Saturday":
+                    horas = String.valueOf(Peluqueria.getHorario().get("sabado")).split(",");
+                    break;
+                case "lunes":
+                    horas = String.valueOf(Peluqueria.getHorario().get("lunes")).split(",");
+                    break;
+                case "martes":
+                    horas = String.valueOf(Peluqueria.getHorario().get("martes")).split(",");
+                    break;
+                case "miercoles":
+                    horas = String.valueOf(Peluqueria.getHorario().get("miercoles")).split(",");
+                    break;
+                case "jueves":
+                    horas = String.valueOf(Peluqueria.getHorario().get("jueves")).split(",");
+                    break;
+                case "viernes":
+                    horas = String.valueOf(Peluqueria.getHorario().get("viernes")).split(",");
+                    break;
+                case "Sabado":
+                    horas= String.valueOf(Peluqueria.getHorario().get("sabado")).split(",");
+
+                    break;
+                default:
+                    horas= new String[]{"Selecciona un dia"};
+                    Toast.makeText(EditCitaPeluqueriaActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
+
+
+            }
+            horasDeArray=  new ArrayList(Arrays.asList(horas));
+            List<String> finalHorasDeArray = horasDeArray;
+            dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for(DocumentSnapshot doc : queryDocumentSnapshots){
+                        CitasPeluqueria cita = doc.toObject(CitasPeluqueria.class);
+                        Log.d(TAG, "onSuccess: "+finalHorasDeArray.indexOf(cita.getHora()));
+                        if(finalHorasDeArray.indexOf(cita.getHora())>0)
+                            finalHorasDeArray.remove(finalHorasDeArray.indexOf(cita.getHora()));
+                        if(finalHorasDeArray.indexOf(cita.getHora())==0)
+                            finalHorasDeArray.remove(0);
+                    }
+                }
+            });
+            hora.setAdapter(new ArrayAdapter<String>(EditCitaPeluqueriaActivity.this, android.R.layout.simple_list_item_1,finalHorasDeArray));
+
+            Log.d(TAG, "onDateSet: "+finalDay);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void chooseDate(View view){
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
-                try {
-                    SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
-                    Date dt1= null;
-
-                    dt1 = format1.parse(selectedDate);
-
-                    DateFormat format2=new SimpleDateFormat("EEEE");
-                    String finalDay=format2.format(dt1);
-                    List<String> horasDeArray=null;
-                    String[] horas=null;
-                    switch (finalDay){
-                        case "Monday":
-                            horas= Peluqueria.getHorario().get("lunes").split(",");
-
-                            break;
-                        case "Tuesday":
-                            horas = Peluqueria.getHorario().get("martes").split(",");
-                            break;
-                        case "Wednesday":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
-                            break;
-                        case "Thursday":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
-                            break;
-                        case "Friday":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
-                            break;
-                        case "Saturday":
-                            horas = Peluqueria.getHorario().get("sabado").split(",");
-                            break;
-                        case "lunes":
-                            horas = Peluqueria.getHorario().get("lunes").split(",");
-                            break;
-                        case "martes":
-                            horas = Peluqueria.getHorario().get("martes").split(",");
-                            break;
-                        case "miercoles":
-                            horas = Peluqueria.getHorario().get("miercoles").split(",");
-                            break;
-                        case "jueves":
-                            horas = Peluqueria.getHorario().get("jueves").split(",");
-                            break;
-                        case "viernes":
-                            horas = Peluqueria.getHorario().get("viernes").split(",");
-                            break;
-                        case "Sabado":
-                            horas= Peluqueria.getHorario().get("sabado").split(",");
-
-                            break;
-                        default:
-                            horas= new String[]{"Selecciona un dia"};
-                            Toast.makeText(EditCitaPeluqueriaActivity.this,"Selecciona un dia que este abierto", Toast.LENGTH_SHORT).show();
-
-
-                    }
-                    horasDeArray=  new ArrayList(Arrays.asList(horas));
-                    List<String> finalHorasDeArray = horasDeArray;
-                    dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for(DocumentSnapshot doc : queryDocumentSnapshots){
-                                CitasPeluqueria cita = doc.toObject(CitasPeluqueria.class);
-                                Log.d(TAG, "onSuccess: "+finalHorasDeArray.indexOf(cita.getHora()));
-                                if(finalHorasDeArray.indexOf(cita.getHora())>0)
-                                    finalHorasDeArray.remove(finalHorasDeArray.indexOf(cita.getHora()));
-                                if(finalHorasDeArray.indexOf(cita.getHora())==0)
-                                    finalHorasDeArray.remove(0);
-                            }
-                        }
-                    });
-                    hora.setAdapter(new ArrayAdapter<String>(EditCitaPeluqueriaActivity.this, android.R.layout.simple_list_item_1,finalHorasDeArray));
-
-                    Log.d(TAG, "onDateSet: "+finalDay);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                setHora(selectedDate);
                 dia.setText(selectedDate);
             }
         });

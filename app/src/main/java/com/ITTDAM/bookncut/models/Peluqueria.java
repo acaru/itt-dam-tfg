@@ -1,5 +1,6 @@
 package com.ITTDAM.bookncut.models;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,10 +9,10 @@ public class Peluqueria {
     private String nombre;
     private String ubicacion;
     private String propietario;
-    private Map<String,String> horario;
+    private Map<String,Object> horario;
     public String Id;
 
-    public Peluqueria(String nombre, String ubicacion, String propietario, Map<String,String> horario) {
+    public Peluqueria(String nombre, String ubicacion, String propietario, Map<String,Object> horario) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.propietario = propietario;
@@ -35,7 +36,7 @@ public class Peluqueria {
 
 
 
-    public Map<String,String> getHorario() {
+    public Map<String,Object> getHorario() {
         return horario;
     }
 }
