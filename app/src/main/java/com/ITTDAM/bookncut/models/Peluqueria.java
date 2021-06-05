@@ -3,7 +3,7 @@ package com.ITTDAM.bookncut.models;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//Modelo para las peluquerias
 public class Peluqueria {
 
     private String nombre;

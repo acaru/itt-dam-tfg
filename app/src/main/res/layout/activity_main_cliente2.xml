@@ -3,54 +3,108 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainClienteActivity2">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabViewMainCliente"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/vpCliente"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabCita"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarAjustes"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/azulOpacoPers">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarAjustes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <customfonts.MyTextView_Poppins_Regular
+                        android:id="@+id/factura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_factura"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="italic"
+                        app:drawableTint="@color/white" />
+
+                    <customfonts.MyTextView_Poppins_Regular
+                        android:id="@+id/btnVolverEditarCita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_cerrar"
+                        android:rotationY="-180"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="italic"
+                        app:drawableTint="@color/white" />
+
+                    <customfonts.MyTextView_Poppins_Regular
+                        android:id="@+id/carrito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentEnd="false"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="10dp"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_carrito"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="italic"
+                        app:drawableTint="@color/white" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabViewMainCliente"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_citas"
-            android:text="Citas" />
+            app:tabBackground="@color/azulPers"
+            app:tabIconTint="@color/amarilloPers"
+            app:tabIndicatorColor="@color/amarilloPers"
+            app:tabTextColor="@color/amarilloPers">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabProductos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_productos"
-            android:text="Productos" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabCita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_citas"
+                android:text="@string/citas" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabEncargo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_encargos"
-            android:text="Encargo" />
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabProductos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_productos"
+                android:text="@string/productos" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpCliente"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabViewMainCliente" />
+        </com.google.android.material.tabs.TabLayout>
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="tabViewMainCliente,vpCliente" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

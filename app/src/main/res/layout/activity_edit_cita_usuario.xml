@@ -4,128 +4,148 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/azulPers"
     tools:context=".EditCitaUsuarioActivity">
 
 
-    <Spinner
-        android:id="@+id/spnServicioEditCitasUsuario"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Servicio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnServicioEditCitasUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnHoraEditCitaUsuario" />
-
-    <Spinner
-        android:id="@+id/spnHoraEditCitaUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <EditText
-        android:id="@+id/txtVDiaEditCitaUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hora"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnHoraEditCitaUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVDiaEditCitaUsuario" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Dia"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtVDiaEditCitaUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="41dp"
-        android:onClick="modificarCita"
-        android:text="Modificar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button10"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnServicioEditCitasUsuario" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:onClick="finalizarCita"
-        android:text="Cita Finalizada"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/spnServicioEditCitasUsuario"
-        app:layout_constraintVertical_bias="0.845" />
-
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:onClick="borrarCita"
-        android:text="Borrar"
-        app:backgroundTint="#E91E63"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarAjustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/azulPers">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarAjustes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnVolver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/azulPers"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_volver" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:background="@color/azulPers"
+            android:orientation="vertical">
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Dia"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="24sp" />
+
+            <customfonts.EditText_Poppins_Regular
+                android:id="@+id/txtVDiaEditCitaUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="add"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="date"
+                android:textColor="@color/azulOpacoPers" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Hora"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/spnHoraEditCitaUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@drawable/customborder" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Servicio"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/spnServicioEditCitasUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="41dp"
+                android:background="@drawable/customborder"
+                android:onClick="modificarCita"
+                android:text="@string/modificar"
+                android:textColor="@color/azulOpacoPers"
+                app:backgroundTint="@color/white"
+                app:backgroundTintMode="add" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/customborder"
+                android:onClick="finalizarCita"
+                android:text="@string/cancelar_cita"
+                app:backgroundTint="#E91E63"
+                app:backgroundTintMode="add" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

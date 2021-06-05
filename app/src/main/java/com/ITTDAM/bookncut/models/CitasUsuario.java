@@ -1,5 +1,5 @@
 package com.ITTDAM.bookncut.models;
-
+//modelo utilizado para obtener la cita de un usaurio
 public class CitasUsuario {
     private String peluqueria;
     private String dia;

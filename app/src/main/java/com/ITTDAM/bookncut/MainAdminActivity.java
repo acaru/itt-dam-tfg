@@ -1,12 +1,15 @@
 package com.ITTDAM.bookncut;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -47,7 +50,25 @@ public class MainAdminActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_cliente, menu);
+
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                CerrarSesion(MainAdminActivity.this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static void CerrarSesion(Context context){
+        Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        FirebaseAuth.getInstance().signOut();
+        context.startActivity(intent);
     }
 
     @Override

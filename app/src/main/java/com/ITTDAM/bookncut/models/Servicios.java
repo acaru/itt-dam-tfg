@@ -1,15 +1,13 @@
 package com.ITTDAM.bookncut.models;
-
+//modelo utilizado para obtener valir de los servicios
 public class Servicios {
     private String nombre;
     private Double precio;
-    private int duracion;
     public String Id;
 
-    public Servicios(String nombre, Double precio, int duracion) {
+    public Servicios(String nombre, Double precio) {
         this.nombre = nombre;
         this.precio = precio;
-        this.duracion = duracion;
     }
 
     public Servicios() {
@@ -23,7 +21,4 @@ public class Servicios {
         return precio;
     }
 
-    public int getDuracion() {
-        return duracion;
-    }
 }

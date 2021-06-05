@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditPeluRootActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:background="@color/azulPers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,49 +23,68 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <customfonts.MyTextView_Poppins_Regular
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:layout_gravity="start"
+                android:layout_margin="10sp"
+                android:text="@string/nombre"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <EditText
+            <customfonts.EditText_Poppins_Regular
                 android:id="@+id/txtVNombreEditPeluqueria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColor="@color/azulOpacoPers" />
 
-            <TextView
+            <customfonts.MyTextView_Poppins_Regular
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Direccion"
+                android:layout_gravity="start"
+                android:layout_margin="10sp"
+                android:text="@string/direccion"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <EditText
+            <customfonts.EditText_Poppins_Regular
                 android:id="@+id/txtVDireccionEditPeluqueria"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/azulOpacoPers" />
 
-            <TextView
+            <customfonts.MyTextView_Poppins_Regular
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Horario"
+                android:layout_gravity="start"
+                android:layout_margin="10sp"
+                android:text="@string/horario"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="10sp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@drawable/customborder"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -68,37 +92,43 @@
                         android:id="@+id/cbLunesEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lunes" />
+                        android:text="@string/lunes"
+                        android:textColor="@color/amarilloPers" />
 
                     <CheckBox
                         android:id="@+id/cbMartesEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Martes" />
+                        android:text="@string/martes"
+                        android:textColor="@color/amarilloPers" />
 
                     <CheckBox
                         android:id="@+id/cbMiercolesEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Miercoles" />
+                        android:text="@string/miercoles"
+                        android:textColor="@color/amarilloPers" />
 
                     <CheckBox
                         android:id="@+id/cbJuevesEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jueves" />
+                        android:text="@string/jueves"
+                        android:textColor="@color/amarilloPers" />
 
                     <CheckBox
                         android:id="@+id/cbViernesEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Viernes" />
+                        android:text="@string/viernes"
+                        android:textColor="@color/amarilloPers" />
 
                     <CheckBox
                         android:id="@+id/cbSabadoEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sabado" />
+                        android:text="@string/sabado"
+                        android:textColor="@color/amarilloPers" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -107,7 +137,13 @@
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear" />
+                android:layout_margin="10sp"
+                android:background="@drawable/customborder"
+                android:onClick="modificarPeluqueria"
+                android:text="@string/modificar"
+                android:textColor="@color/azulOpacoPers"
+                app:backgroundTint="@color/white"
+                app:backgroundTintMode="add" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,7 +1,7 @@
 package com.ITTDAM.bookncut.models;
 
 import java.util.Map;
-
+//modelo utilizado para obtener datos de la coleccion cita de una peluqueria
 public class CitasPeluqueria {
     private String dia;
     private String servicio;

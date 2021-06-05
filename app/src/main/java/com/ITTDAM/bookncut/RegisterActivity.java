@@ -22,18 +22,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RegisterActivity extends AppCompatActivity {
 
     //declaracion de inputs
-    EditText Nombre;
-    EditText Apellidos;
-    EditText Email;
-    EditText Password;
-    EditText Telefono;
-    Database db;
+    private EditText Nombre;
+    private EditText Apellidos;
+    private EditText Email;
+    private EditText Password;
+    private EditText Telefono;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+//declara los valores del formulario a utilizar
         Nombre = findViewById(R.id.txtNombreUsuario);
         Apellidos = findViewById(R.id.txtApellidosUsuario);
         Email = findViewById(R.id.txtEmailUsuario);
@@ -44,18 +44,21 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerApp(View view){
-
+//verifica que no hay ningun dato sin elegir del cliente
         if(!Nombre.getText().toString().isEmpty()&&!Apellidos.getText().toString().isEmpty()&&!Email.getText().toString().isEmpty()&&!Password.getText().toString().isEmpty()&&!Telefono.getText().toString().isEmpty()){
+            //crea el usuario en firebase auth
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(Email.getText().toString(),Password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()){//si lo puede crear
+                        //crea el usuario
                         Usuarios usuario = new Usuarios(Nombre.getText().toString(),Apellidos.getText().toString(),Email.getText().toString(),Integer.parseInt(Telefono.getText().toString()),"Cliente");
+
                         db.crearUsuario(usuario);
                         Toast.makeText(RegisterActivity.this,"Se ha registrado el usuario",Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent();
                         intent.putExtra("nombre",Nombre.getText().toString()+" "+Apellidos.getText().toString());
-                        setResult(1,intent);
+                        setResult(1,intent);//se pone el resultado porque asi se envia directamente al menu de cliente
                         finish();//finishing activity
                     }
                     else{
@@ -74,5 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
         else {
             Toast.makeText(RegisterActivity.this,"Rellena todos los campos",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void cancelar(View v){
+        finish();
     }
 }

@@ -6,41 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainClienteActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcCitasUsuario"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="560dp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="10dp"
-        android:text="Citas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/rcCitasUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="newCitaRedirect"
-        android:text="Nueva Cita"
+        android:layout_height="match_parent"
+        android:background="@color/azulOpacoPers"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcCitasUsuario" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <customfonts.MyTextView_Poppins_Regular
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10sp"
+            android:text="@string/escoge_una_peluqueria"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/amarilloPers"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPeluqueriasChooser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1B3243">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

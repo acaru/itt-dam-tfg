@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NewPeluRootActivity extends AppCompatActivity {
+    //declara las variables
     public static final String TAG = "MAIN ROOT NEWPELUQUERIA";
     private FirebaseFirestore dbF = FirebaseFirestore.getInstance();
     private Database db = new Database(this);
@@ -43,9 +44,10 @@ public class NewPeluRootActivity extends AppCompatActivity {
     private EditText txtPasswordPropietario;
 
 
-
+    //oncreateview se ejecuta cuando se crea el elemento
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //declara los valores del formulario a utilizar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pelu_root);
         txtNombrePeluqueria=findViewById(R.id.txtVNombrePeluqueria);
@@ -64,9 +66,11 @@ public class NewPeluRootActivity extends AppCompatActivity {
 
 
     }
-
+    //funcion para crear la peluqueria
     public void crearPeluqueria(View v){
+        //verifica que no hay ningun dato sin elegir de la peluqueria
         if(!txtNombrePeluqueria.getText().toString().isEmpty()&&!txtUbicacionPeluqueria.getText().toString().isEmpty()&&(cbLunes.isChecked()||cbMartes.isChecked()||cbMiercoles.isChecked()||cbJueves.isChecked()||cbViernes.isChecked()||cbSabado.isChecked())){
+            //verifica los dias seleccionados para hacer un horario y añadirlo
             String horarioSemana="10:00,10:30,11:00,11:30,12:00,12:30,13:00,13:30,16:00,16:30,17:00,17:30,18:00,18:30,19:00,19:30";
             String horarioSabado="10:00,10:30,11:00,11:30,12:00,12:30,13:00,13:30";
             HashMap<String,Object> horario = new HashMap<>();
@@ -82,14 +86,18 @@ public class NewPeluRootActivity extends AppCompatActivity {
                 horario.put("viernes",horarioSemana);
             if(cbSabado.isChecked())
                 horario.put("sabado",horarioSabado);
-
+//verifica que no hay ningun dato sin elegir del propietario
             if(!txtNombrePropietario.getText().toString().isEmpty()&&!txtApellidosPropietario.getText().toString().isEmpty()&&!txtEmailPropietario.getText().toString().isEmpty()&&!txtTelefonoPropietario.getText().toString().isEmpty()&&!txtPasswordPropietario.getText().toString().isEmpty()){
+                //crea el usuario en firebase auth
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(txtEmailPropietario.getText().toString(),txtPasswordPropietario.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful()){//si lo puede crear
+                            //crea la peluqueria
                             Peluqueria peluqueria=new Peluqueria(txtNombrePeluqueria.getText().toString(),txtUbicacionPeluqueria.getText().toString(),txtEmailPropietario.getText().toString(),horario);
+                            //crea el usuario
                             Usuarios usuario = new Usuarios(txtNombrePropietario.getText().toString(),txtApellidosPropietario.getText().toString(),txtEmailPropietario.getText().toString(),Integer.parseInt(txtTelefonoPropietario.getText().toString()),"Administrador");
+                            //con la clase databse crea la pelquueria y usaurio
                             db.crearPeluqueria(txtNombrePeluqueria.getText().toString(),peluqueria);
                             db.crearUsuario(usuario);
                             finish();

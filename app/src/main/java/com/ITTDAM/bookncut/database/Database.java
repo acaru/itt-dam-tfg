@@ -17,14 +17,10 @@ import com.ITTDAM.bookncut.models.Usuarios;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +48,11 @@ public class Database {
     public static final String TELEFONO_KEY = "telefono";
     public static final String PELUQUERIA_KEY = "peluqueria";
     public static final String SERVICIO_KEY = "servicio";
+    public static final String PRODUCTO_KEY = "producto";
+    public static final String CANTIDAD_KEY = "cantidad";
+    public static final String PRODUCTOS_KEY = "productos";
+    public static final String TOTAL_KEY = "total";
+    public static final String CANTIDADES_KEY = "cantidades";
     private Context contexto;
 
     //Constructor de Database al que le pasamos el contexto
@@ -89,11 +90,11 @@ public class Database {
         });
     }
 
+    //crea servicios
     public void crearServicio(String peluqueria, Servicios datos){
         Map<String,Object> servicios = new HashMap<>();
         servicios.put(NOMBRE_KEY,datos.getNombre());
-        servicios.put(DURACION_KEY,datos.getDuracion());
-        servicios.put(PRECIO_KEY,datos.getDuracion());
+        servicios.put(PRECIO_KEY,datos.getPrecio());
 
         //Otra forma de añadir documentos es con el método add desde una colección, Firestore añade el documento con un ID automático, asi se asegura el insertado
         db.collection("peluqueria/"+peluqueria+"/servicio/").add(servicios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -111,6 +112,7 @@ public class Database {
         });
     }
 
+    //crea prodctos
     public void crearProducto(String peluqueria, Productos datos){
         Map<String,Object> productos = new HashMap<>();
         productos.put(NOMBRE_KEY,datos.getNombre());
@@ -131,6 +133,7 @@ public class Database {
         });
     }
 
+    //crea una cita para la peluqueria
 
     public void crearCita(String peluqueria, CitasPeluqueria datos){
         Map<String, Object> cita = new HashMap<>();
@@ -154,14 +157,16 @@ public class Database {
         });
     }
 
+    //crea a un usuario
+
     public void crearUsuario(Usuarios datos){
         Map<String, Object> usuario = new HashMap<>();
         usuario.put(NOMBRE_KEY, datos.getNombre());
         usuario.put(APELLIDOS_KEY, datos.getApellidos());
-        usuario.put(EMAIL_KEY, datos.getMail());
+        usuario.put(EMAIL_KEY, datos.getEmail());
         usuario.put(TELEFONO_KEY, datos.getTelefono());
         usuario.put(TIPO,datos.getTipo());
-        db.document("usuario/"+datos.getMail()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.document("usuario/"+datos.getEmail()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(DATABASE, "Se creo el usuario ");
@@ -175,6 +180,8 @@ public class Database {
             }
         });
     }
+
+    //crea cita para un usuario
 
     public void crearCitaUsuario(String usuario, CitasUsuario datos) {
         Map<String, Object> cita = new HashMap<>();
@@ -197,6 +204,49 @@ public class Database {
             }
         });
     }
+
+    //crea facturas para usuario y para peluqueria
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void crearFactura(String usuario, String peluqueria, ArrayList<Productos> productosList, ArrayList<Integer> cantidades){
+        Map<String, Object> factura=new HashMap<>();
+        double total=0d;
+        for(int k = 0;k<productosList.size();k++){
+            total+=productosList.get(k).getPrecio()*cantidades.get(k);
+        }
+        List<String>productos=new ArrayList<>();
+        productosList.forEach(pro->{
+            productos.add(pro.getNombre());
+        });
+        factura.put(PRODUCTOS_KEY,productos);
+        factura.put(TOTAL_KEY,total);
+        factura.put(CANTIDADES_KEY,cantidades);
+        factura.put(USUARIO_KEY,usuario);
+        factura.put(PELUQUERIA_KEY,peluqueria);
+        db.collection("usuario/"+usuario+"/factura/").add(factura).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference avoid) {
+                Toast.makeText(contexto,"Compra completada", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Toast.makeText(contexto,"Error al comprar los productos", Toast.LENGTH_SHORT).show();
+            }
+        });
+        db.collection("peluqueria/"+peluqueria+"/factura/").add(factura).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference avoid) {
+                Toast.makeText(contexto,"Factura enviada al vendedor", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Toast.makeText(contexto,"Error al notificar al vendedor", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     //modificar datos
     public void modificarPeluqueria(String id,Peluqueria datos){
@@ -228,8 +278,7 @@ public class Database {
     public void modificarServicio(String peluqueria, Servicios datos,String id){
         Map<String,Object> servicios = new HashMap<>();
         servicios.put(NOMBRE_KEY,datos.getNombre());
-        servicios.put(DURACION_KEY,datos.getDuracion());
-        servicios.put(PRECIO_KEY,datos.getDuracion());
+        servicios.put(PRECIO_KEY,datos.getPrecio());
         db.document("peluqueria/"+peluqueria+"/servicio/"+id).set(servicios).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
@@ -246,6 +295,7 @@ public class Database {
         });
     }
 
+    //mdoifica la cita
     public void modificarCita(String peluqueria, CitasPeluqueria datos,String id){
 
         Map<String, Object> cita = new HashMap<>();
@@ -269,6 +319,7 @@ public class Database {
         });
     }
 
+    //modifica la cita
     @RequiresApi(api = Build.VERSION_CODES.R)
     public void modificarCitaUsuario(String usuario, CitasUsuario datos, String id){
 
@@ -293,6 +344,7 @@ public class Database {
         });
     }
 
+    //modifica producto
     public void modificarProducto(String peluqueria, Productos datos,String id){
         Map<String,Object> productos = new HashMap<>();
         productos.put(NOMBRE_KEY,datos.getNombre());
@@ -312,5 +364,7 @@ public class Database {
             }
         });
     }
+
+
 
 }

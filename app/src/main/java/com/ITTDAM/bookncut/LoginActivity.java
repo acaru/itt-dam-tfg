@@ -26,9 +26,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class LoginActivity extends AppCompatActivity {
 
     //declaracion de los inputs
-    EditText Email;
-    EditText Password;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EditText Email;
+    private EditText Password;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +53,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
         if(requestCode==1)
-        {
+        {   if(data!=null){
             Intent intent = new Intent(this,MainClienteActivity.class);
             intent.putExtra("nombre",data.getStringExtra("nombre"));
             intent.putExtra("email",data.getStringExtra("email"));
             startActivity(intent);
+            }
         }
     }
 
@@ -69,6 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         if(Email.getText().toString().equals("root@root.com")){
+
+                            Email.setText("");
+                            Password.setText("");
                             Intent intent=new Intent(LoginActivity.this,MainRootActivity.class);
                             startActivity(intent);
                         }

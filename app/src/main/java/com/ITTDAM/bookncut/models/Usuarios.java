@@ -1,7 +1,7 @@
 package com.ITTDAM.bookncut.models;
 
 import java.util.List;
-
+//modelo para obtener los datos de usuario
 public class Usuarios {
     private String nombre;
     private String apellidos;
@@ -29,7 +29,7 @@ public class Usuarios {
     }
 
 
-    public String getMail() {
+    public String getEmail() {
         return email;
     }
 

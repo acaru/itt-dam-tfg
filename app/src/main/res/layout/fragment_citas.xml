@@ -4,27 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.citas.CitasFragment">
+    android:background="@color/azulOpacoPers"
+    tools:context=".adminPeluqueria.citas.CitasFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCitasPeluqueria"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="Nueva Cita"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvCitasPeluqueria" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCitasPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/azulOpacoPers">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/customborder"
+                app:backgroundTint="@color/white"
+                app:backgroundTintMode="add"
+                android:text="@string/nueva_cita"
+                android:textColor="@color/azulOpacoPers" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

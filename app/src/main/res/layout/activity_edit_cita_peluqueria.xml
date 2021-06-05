@@ -4,179 +4,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.citas.EditCitaPeluqueriaActivity">
+    android:background="@color/azulPers"
+    tools:context=".adminPeluqueria.citas.EditCitaPeluqueriaActivity">
 
-    <Spinner
-        android:id="@+id/spnServicioEditCitasPeluqueria"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Servicio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnServicioEditCitasPeluqueria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnHoraEditCitaPeluqueria" />
-
-    <Spinner
-        android:id="@+id/spnHoraEditCitaPeluqueria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <EditText
-        android:id="@+id/txtVDiaEditCitaPeluqueria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hora"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnHoraEditCitaPeluqueria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVDiaEditCitaPeluqueria" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Dia"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtVDiaEditCitaPeluqueria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="22dp"
-        android:onClick="modificarCita"
-        android:text="Guardar"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button10"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailEditCitaPeluqueria" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="22dp"
-        android:onClick="finalizarCita"
-        android:text="Cita Finalizada"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailEditCitaPeluqueria" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Usuario"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtNombreUsuarioEditCitaPeluqueria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnServicioEditCitasPeluqueria" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtEmailEditCitaPeluqueria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreUsuarioEditCitaPeluqueria" />
-
-    <EditText
-        android:id="@+id/txtNombreUsuarioEditCitaPeluqueria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.612" />
-
-    <EditText
-        android:id="@+id/txtEmailEditCitaPeluqueria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="borrarCita"
-        android:text="Borrar"
-        app:backgroundTint="#E91E63"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarAjustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/azulPers">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarAjustes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnVolver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/azulPers"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_volver" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:background="@color/azulPers"
+            android:orientation="vertical">
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:text="@string/editar_cita"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="24sp" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/dia"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="20sp" />
+
+            <customfonts.EditText_Poppins_Regular
+                android:id="@+id/txtVDiaEditCitaPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="add"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="date"
+                android:textColor="@color/azulOpacoPers" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hora"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spnHoraEditCitaPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="add"
+                android:popupBackground="@color/white" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/servicio"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/amarilloPers"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spnServicioEditCitasPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="add"
+                android:popupBackground="@color/white" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="@color/azulPers"
+                android:text="@string/nombre_del_cliente"
+                android:textColor="@color/amarilloPers"
+                android:textSize="20sp" />
+
+            <customfonts.EditText_Poppins_Regular
+                android:id="@+id/txtNombreEditCitaPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="add"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/azulOpacoPers" />
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:id="@+id/txtUsuarioNewCitaPeluqueria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:text="@string/usuario"
+                android:textColor="@color/amarilloPers"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spnEmailUsuarioEditCitaPeluqueria"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:popupBackground="@color/white"
+                android:textColor="@color/azulOpacoPers" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/customborder"
+                    android:onClick="modificarCita"
+                    android:text="@string/modificar"
+                    android:textColor="@color/azulOpacoPers"
+                    app:backgroundTint="@color/white"
+                    app:backgroundTintMode="add" />
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/customborder"
+                    android:onClick="finalizarCita"
+                    android:text="@string/finalizar"
+                    android:textColor="@color/azulOpacoPers"
+                    app:backgroundTint="@color/white"
+                    app:backgroundTintMode="add" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5sp"
+                android:background="@drawable/customborder"
+                android:onClick="borrarCita"
+                android:text="@string/borrar"
+                app:backgroundTint="@color/RojoCancelar"
+                app:backgroundTintMode="add" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

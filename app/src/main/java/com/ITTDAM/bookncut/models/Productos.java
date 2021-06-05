@@ -1,6 +1,8 @@
 package com.ITTDAM.bookncut.models;
 
-public class Productos {
+import java.io.Serializable;
+//modelo utilizado para obtener el valor de los productos
+public class Productos implements Serializable {
     private String nombre;
     private Double precio;
     private String tipo;

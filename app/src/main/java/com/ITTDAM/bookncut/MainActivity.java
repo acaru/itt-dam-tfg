@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //public static final String VALOR_1 = "valor1";
 
     //private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("prueba/documento");
-    Database db;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
