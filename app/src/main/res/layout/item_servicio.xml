@@ -32,7 +32,7 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <customfonts.MyTextView_Poppins_Regular
+                <TextView
                     android:id="@+id/txtVNombreServicio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                     android:background="@drawable/customborder"
                     android:orientation="vertical">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVPrecioServicio"
                         android:layout_width="wrap_content"
                         android:layout_height="39dp"

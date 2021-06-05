@@ -50,30 +50,32 @@
             android:background="@color/azulPers"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
                 android:text="@string/editar_cita"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/dia"
+                android:fontFamily="@font/poppins"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"
                 android:textSize="20sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtVDiaEditCitaPeluqueria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
                 android:backgroundTintMode="add"
                 android:clickable="true"
                 android:ems="10"
@@ -88,11 +91,12 @@
                 android:inputType="date"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hora"
+                android:fontFamily="@font/poppins"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"
                 android:textSize="20sp" />
@@ -108,12 +112,13 @@
                 android:backgroundTintMode="add"
                 android:popupBackground="@color/white" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="@string/servicio"
+                android:fontFamily="@font/poppins"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"
                 android:textSize="20sp" />
@@ -128,34 +133,37 @@
                 android:backgroundTintMode="add"
                 android:popupBackground="@color/white" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:background="@color/azulPers"
+                android:fontFamily="@font/poppins"
                 android:text="@string/nombre_del_cliente"
                 android:textColor="@color/amarilloPers"
                 android:textSize="20sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtNombreEditCitaPeluqueria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
                 android:backgroundTintMode="add"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/txtUsuarioNewCitaPeluqueria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:text="@string/usuario"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="20sp" />
 

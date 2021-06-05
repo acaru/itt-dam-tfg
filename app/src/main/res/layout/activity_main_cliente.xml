@@ -17,13 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <customfonts.MyTextView_Poppins_Regular
+        <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10sp"
             android:text="@string/escoge_una_peluqueria"
+            android:fontFamily="@font/poppins"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/amarilloPers"
             android:textStyle="bold" />

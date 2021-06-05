@@ -33,7 +33,7 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <customfonts.MyTextView_Poppins_Regular
+                <TextView
                     android:id="@+id/txtVUsuarioFactura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                     android:background="@drawable/customborder"
                     android:orientation="horizontal">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVProductosFactura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                         android:textColor="@color/amarilloPers"
                         android:textSize="18sp" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVCantidadesFactura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                         android:textSize="18sp" />
                 </LinearLayout>
 
-                <customfonts.MyTextView_Poppins_Regular
+                <TextView
                     android:id="@+id/txtVTotalFactura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

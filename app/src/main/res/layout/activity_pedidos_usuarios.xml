@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/azulPers">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/volverCarrito"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -48,6 +48,7 @@
                         android:drawableLeft="@drawable/ic_volver"
                         android:textColor="@color/white"
                         android:textSize="20dp"
+                        android:fontFamily="@font/poppins"
                         android:textStyle="italic"
                         app:drawableTint="@color/white" />
                 </RelativeLayout>
@@ -61,13 +62,14 @@
             android:layout_margin="10sp"
             android:background="@color/azulOpacoPers" />
 
-        <customfonts.MyTextView_Poppins_Regular
+        <TextView
             android:id="@+id/txtTotalCarrito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10sp"
             android:text="TextView"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/amarilloPers"
             android:textSize="24sp"
             android:textStyle="bold" />

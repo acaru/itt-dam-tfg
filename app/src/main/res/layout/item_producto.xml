@@ -32,7 +32,7 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <customfonts.MyTextView_Poppins_Regular
+                <TextView
                     android:id="@+id/txtVNombreProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                     android:background="@drawable/customborder"
                     android:orientation="vertical">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVPrecioProducto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                         android:textColor="@color/amarilloPers"
                         android:textSize="18sp" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVTipoProducto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

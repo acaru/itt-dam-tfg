@@ -49,17 +49,18 @@
             android:layout_margin="10sp"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="26dp"
                 android:text="@string/nombre_del_servicio"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtNombreNewServicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,20 +68,22 @@
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
                 android:backgroundTintMode="add"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
                 android:text="@string/precio"
                 android:textColor="@color/amarilloPers"
+                android:fontFamily="@font/poppins"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtPrecioNewServicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,6 +91,7 @@
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
                 android:backgroundTintMode="add"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="numberSigned"
                 android:textColor="@color/azulOpacoPers" />

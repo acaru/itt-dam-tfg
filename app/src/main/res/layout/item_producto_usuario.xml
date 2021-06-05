@@ -55,7 +55,7 @@
                     android:backgroundTint="@color/azulOpacoPers"
                     android:orientation="vertical">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVNombreProductoUsuario"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,13 +68,14 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVPrecioProductoUsuario"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="10sp"
                         android:text="Texto"
+                        android:fontFamily="@font/roboto"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/amarilloPers"
                         android:textSize="18sp" />

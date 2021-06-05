@@ -50,20 +50,21 @@
             android:background="@color/azulPers"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="26dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Editar Servicio"
                 android:textAllCaps="true"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,36 +72,40 @@
                 android:layout_marginBottom="26dp"
                 android:text="Nombre del servicio"
                 android:textAllCaps="false"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtNombreEditServicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
                 android:text="Precio"
                 android:textColor="@color/amarilloPers"
+                android:fontFamily="@font/poppins"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtPrecioEditServicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="numberSigned"
                 android:textColor="@color/azulOpacoPers" />

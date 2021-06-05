@@ -31,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/factura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -39,12 +39,13 @@
                         android:layout_marginRight="10dp"
                         android:clickable="true"
                         android:drawableLeft="@drawable/ic_factura"
+                        android:fontFamily="@font/poppins"
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="italic"
                         app:drawableTint="@color/white" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/btnVolverEditarCita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -55,9 +56,10 @@
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="italic"
+                        android:fontFamily="@font/poppins"
                         app:drawableTint="@color/white" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/carrito"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
                         android:clickable="true"
                         android:drawableLeft="@drawable/ic_carrito"
                         android:textColor="@color/white"
+                        android:fontFamily="@font/poppins"
                         android:textSize="24sp"
                         android:textStyle="italic"
                         app:drawableTint="@color/white" />

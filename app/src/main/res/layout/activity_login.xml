@@ -44,31 +44,34 @@
             android:orientation="vertical"
             android:paddingLeft="16dp">
 
-          <customfonts.MyTextView_Poppins_SemiBold
+          <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="21.5dp"
+              android:fontFamily="@font/poppins_semibold"
               android:gravity="center_horizontal"
               android:text="@string/iniciar_sesi_n"
               android:textColor="#333232"
               android:textSize="23.3sp" />
 
 
-          <customfonts.MyTextView_Poppins_Regular
+          <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="27.3dp"
+              android:fontFamily="@font/poppins"
               android:text="@string/usuario"
               android:textColor="#9e9d9d"
               android:textSize="12.3sp" />
 
-          <customfonts.EditText_Poppins_Regular
+          <EditText
               android:id="@+id/txtEmailLogin"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="12dp"
               android:layout_marginRight="15.5sp"
               android:background="@android:color/transparent"
+              android:fontFamily="@font/poppins"
               android:maxLines="1"
               android:textColor="@color/azulPers"
               android:textColorHint="#c2c2c2"
@@ -83,11 +86,12 @@
               android:background="#9e9e9e" />
 
 
-          <customfonts.MyTextView_Poppins_Regular
+          <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="32dp"
               android:text="@string/contrase_a"
+              android:fontFamily="@font/poppins"
               android:textColor="#9e9d9d"
               android:textSize="12.3sp" />
 
@@ -100,11 +104,12 @@
               android:orientation="horizontal">
 
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins"
                 android:inputType="textPassword"
                 android:maxLength="10"
                 android:maxLines="1"
@@ -167,20 +172,22 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-      <customfonts.MyTextView_Poppins_Regular
+      <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
+          android:fontFamily="@font/poppins"
           android:text="@string/usuario_nuevo"
           android:textColor="#FFFFFF"
           android:textSize="13.3sp" />
 
-      <customfonts.MyTextView_Poppins_Regular
+      <EditText
           android:id="@+id/btnRegistrar"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginLeft="5dp"
           android:clickable="true"
+          android:fontFamily="@font/poppins"
           android:focusable="false"
           android:gravity="center_horizontal"
           android:onClick="registerRedirect"

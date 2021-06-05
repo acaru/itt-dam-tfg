@@ -51,17 +51,18 @@
             android:background="@color/azulPers"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/poppins"
                 android:text="Dia"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtVDiaEditCitaUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,6 +70,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins"
                 android:backgroundTintMode="add"
                 android:clickable="true"
                 android:ems="10"
@@ -76,10 +78,11 @@
                 android:inputType="date"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="Hora"
@@ -97,12 +100,13 @@
                 android:backgroundTint="@color/white"
                 android:popupBackground="@drawable/customborder" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins"
                 android:text="Servicio"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/amarilloPers"

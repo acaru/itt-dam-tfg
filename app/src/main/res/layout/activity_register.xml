@@ -23,37 +23,40 @@
             android:layout_margin="30sp"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="Nombre"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtNombreUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:background="@drawable/customborder"
+                android:fontFamily="@font/poppins"
                 android:backgroundTint="@color/white"
                 android:backgroundTintMode="add"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="Apellidos"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtApellidosUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,20 +64,22 @@
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
                 android:backgroundTintMode="add"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="Telefono"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtTelefonoUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,20 +87,22 @@
                 android:background="@drawable/customborder"
                 android:backgroundTint="@color/white"
                 android:backgroundTintMode="add"
+                android:fontFamily="@font/poppins"
                 android:ems="10"
                 android:inputType="phone"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="Email"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtEmailUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,18 +112,20 @@
                 android:backgroundTintMode="add"
                 android:ems="10"
                 android:inputType="textEmailAddress"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/azulOpacoPers" />
 
-            <customfonts.MyTextView_Poppins_Regular
+            <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="Contraseña"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/amarilloPers"
                 android:textSize="24sp" />
 
-            <customfonts.EditText_Poppins_Regular
+            <EditText
                 android:id="@+id/txtPasswordUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,6 +135,7 @@
                 android:backgroundTintMode="add"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/azulOpacoPers" />
 
             <Button

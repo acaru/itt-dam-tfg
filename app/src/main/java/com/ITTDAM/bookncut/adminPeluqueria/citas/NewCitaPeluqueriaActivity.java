@@ -295,7 +295,7 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
     public void createCita(View view){
         //verifica que no hay ningun dato sin elegir
         if(!dia.getText().toString().isEmpty()&&hora.getSelectedItem()!="Selecciona la hora"&&servicio.getSelectedItem()!="Selecciona un servicio"){
-//crea la cita
+            //crea la cita
             CitasPeluqueria cita;
 
             //Validaciones para crear la cita de la peluqueria

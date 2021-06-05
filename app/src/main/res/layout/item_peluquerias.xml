@@ -44,7 +44,7 @@
                     android:scaleType="fitXY"
                     tools:srcCompat="@drawable/fondo1" />
 
-                <customfonts.MyTextView_Poppins_Regular
+                <TextView
                     android:id="@+id/txtVNombrePeluqueria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

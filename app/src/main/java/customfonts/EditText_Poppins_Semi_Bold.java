@@ -24,7 +24,7 @@ public class EditText_Poppins_Semi_Bold extends androidx.appcompat.widget.AppCom
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Poppins-SemiBold.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/poppins-semibold.ttf");
             setTypeface(tf);
         }
     }

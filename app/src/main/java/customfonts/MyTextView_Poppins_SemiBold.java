@@ -3,7 +3,6 @@ package customfonts;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 
 public class MyTextView_Poppins_SemiBold extends androidx.appcompat.widget.AppCompatTextView {

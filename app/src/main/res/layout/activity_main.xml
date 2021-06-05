@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <customfonts.EditText_Poppins_Regular
+    <EditText
         android:id="@+id/txtcampo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <customfonts.EditText_Poppins_Regular
+    <EditText
         android:id="@+id/txtcampo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

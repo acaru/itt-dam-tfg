@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                         android:textColor="@color/amarilloPers"
                         android:textSize="20sp" />
 
-                    <customfonts.MyTextView_Poppins_Regular
+                    <TextView
                         android:id="@+id/txtVUsuarioRVCitaPeluqueria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <customfonts.MyTextView_Poppins_Regular
+                        <TextView
                             android:id="@+id/txtVDiaHoraRVCitaPeluqueria"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                             android:textColor="@color/amarilloPers"
                             android:textSize="20sp" />
 
-                        <customfonts.MyTextView_Poppins_Regular
+                        <TextView
                             android:id="@+id/txtVServicioRVCitaPeluqueria"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
