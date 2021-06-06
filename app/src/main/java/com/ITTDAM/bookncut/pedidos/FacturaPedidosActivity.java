@@ -94,6 +94,6 @@ public class FacturaPedidosActivity extends AppCompatActivity implements Adapter
 
     @Override
     public void onClick(Facturas ca) {
-        //hacer alertdialog con los detalles de la factora
+        //hacer alertdialog con los detalles de la factura
     }
 }

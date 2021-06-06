@@ -11,17 +11,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ITTDAM.bookncut.models.Usuarios;
+import com.ITTDAM.bookncut.root.MainRootActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,10 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         if(Email.getText().toString().equals("root@root.com")){
-
                             Email.setText("");
                             Password.setText("");
-                            Intent intent=new Intent(LoginActivity.this,MainRootActivity.class);
+                            Intent intent=new Intent(LoginActivity.this, MainRootActivity.class);
                             startActivity(intent);
                         }
                         else
@@ -81,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 if(documentSnapshot.exists()){
-
                                     Usuarios usuario =documentSnapshot.toObject(Usuarios.class);
                                     Log.d("LOGIN","Usuario Existe");
                                     Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_SHORT).show();
@@ -110,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-
                                 Toast.makeText(LoginActivity.this,"Error al iniciar sesion",Toast.LENGTH_SHORT).show();
                                 Log.d("LOGIN ERROR",e.getMessage());
                             }

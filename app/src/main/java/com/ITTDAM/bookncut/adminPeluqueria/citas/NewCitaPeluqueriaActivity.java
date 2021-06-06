@@ -200,7 +200,6 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                     switch (finalDay){
                         case "Monday":
                             horas= String.valueOf(Peluqueria.getHorario().get("lunes")).split(",");
-
                             break;
                         case "Tuesday":
                             horas = String.valueOf(Peluqueria.getHorario().get("martes")).split(",");
@@ -234,7 +233,6 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                             break;
                         case "sábado":
                             horas= String.valueOf(Peluqueria.getHorario().get("sabado")).split(",");
-
                             break;
                         default:
                             horas= new String[]{"Selecciona un dia"};
@@ -295,7 +293,7 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
     public void createCita(View view){
         //verifica que no hay ningun dato sin elegir
         if(!dia.getText().toString().isEmpty()&&hora.getSelectedItem()!="Selecciona la hora"&&servicio.getSelectedItem()!="Selecciona un servicio"){
-            //crea la cita
+//crea la cita
             CitasPeluqueria cita;
 
             //Validaciones para crear la cita de la peluqueria

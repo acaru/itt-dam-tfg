@@ -1,4 +1,4 @@
-package com.ITTDAM.bookncut;
+package com.ITTDAM.bookncut.pruebas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ITTDAM.bookncut.R;
+import com.ITTDAM.bookncut.RegisterActivity;
 import com.ITTDAM.bookncut.database.Database;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
        // });
 
     }public void registerRedirect(View view){
-        Intent intent = new Intent(this,RegisterActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

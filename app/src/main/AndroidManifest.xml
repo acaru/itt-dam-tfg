@@ -14,9 +14,9 @@
         <activity android:name=".pedidos.FacturaPedidosActivity"></activity>
         <activity android:name=".pedidos.CarritoUsuariosActivity" />
         <activity android:name=".MainClienteActivity2" />
-        <activity android:name=".EditPeluRootActivity" />
-        <activity android:name=".NewPeluRootActivity" />
-        <activity android:name=".MainRootActivity" />
+        <activity android:name=".root.EditPeluRootActivity" />
+        <activity android:name=".root.NewPeluRootActivity" />
+        <activity android:name=".root.MainRootActivity" />
         <activity android:name=".EditCitaUsuarioActivity" />
         <activity android:name=".adminPeluqueria.servicios.EditServicioActivity" />
         <activity android:name=".adminPeluqueria.productos.EditProductoActivity" />
@@ -31,7 +31,7 @@
             android:label="@string/title_activity_main_cliente"
             android:theme="@style/Theme.Bookncut.NoActionBar" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".pruebas.MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

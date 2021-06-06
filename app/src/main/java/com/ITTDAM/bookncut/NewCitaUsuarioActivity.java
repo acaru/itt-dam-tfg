@@ -82,7 +82,6 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
         //declara los valores del formulario a utilizar
         dia = findViewById(R.id.txtVDiaCitaUsuario);
-
         dia.setOnClickListener(this::chooseDate);
         hora = findViewById(R.id.spnHoraCitaUsuario);
         servicio = findViewById(R.id.spnServicioCitasUsuario);
@@ -97,7 +96,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
         //añade valor por defecto al spinner hora
         hora.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item,new ArrayList<>(List.of("Selecciona el dia"))));
         //crea las lista para los servicios
-         nombresServicios= new ArrayList<>();
+        nombresServicios= new ArrayList<>();
         servicios = new ArrayList<>();
         nombresServicios.add("Selecciona un servicio");
 
@@ -132,12 +131,6 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
-
     }
 
     //Método para poder escoger fecha en la activity de crear nueva cita usuario
@@ -160,13 +153,12 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                         //obtiene el dia de la semana
                         DateFormat format2=new SimpleDateFormat("EEEE");
                         String finalDay=format2.format(dt1);
-//reincia el array de las horas
+                        //reincia el array de las horas
                         String[] horas=null;
                         //switch encargado de obtener la fecha de la peluqueria apartir del dia seleccionado
                         switch (finalDay){
                             case "Monday":
                                 horas= (Peluqueria.getHorario().get("lunes")+"").split(",");
-
                                 break;
                             case "Tuesday":
                                 horas = (Peluqueria.getHorario().get("martes")+"").split(",");
@@ -183,7 +175,6 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                             case "Saturday":
                                 horas = (Peluqueria.getHorario().get("sabado")+"").split(",");
                                 break;
-
                             case "lunes":
                                 horas= (Peluqueria.getHorario().get("lunes")+"").split(",");
                                 break;
@@ -201,7 +192,6 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                                 break;
                             case "sábado":
                                 horas = (Peluqueria.getHorario().get("sabado")+"").split(",");
-
                                 break;
                             default:
                                 horas= new String[]{"Selecciona un dia"};
@@ -219,7 +209,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
                         if(selectedDate.equals(dtf.format(now)+"")) {
                             DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
                             LocalDateTime now2 = LocalDateTime.now();
-//for que añade las horas
+                            //for que añade las horas
                             for (String hora : horas) {//10:00 11:30 10 11
                                 if (Integer.parseInt(hora.split(":")[0]) > Integer.parseInt(dtf2.format(now2).split(":")[0]))
                                     horasDeArray.add(hora);
@@ -256,7 +246,7 @@ public class NewCitaUsuarioActivity extends AppCompatActivity {
 
                 }
             });
-//muestra el fragmnto para selccionar la fecha
+            //muestra el fragmnto para selccionar la fecha
             newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 

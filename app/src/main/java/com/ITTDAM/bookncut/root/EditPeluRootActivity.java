@@ -1,4 +1,4 @@
-package com.ITTDAM.bookncut;
+package com.ITTDAM.bookncut.root;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.database.Database;
 import com.ITTDAM.bookncut.models.Peluqueria;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,4 +1,4 @@
-package com.ITTDAM.bookncut;
+package com.ITTDAM.bookncut.root;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.ITTDAM.bookncut.Adapters.AdapterPeluquerias;
+import com.ITTDAM.bookncut.R;
 import com.ITTDAM.bookncut.models.Peluqueria;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
