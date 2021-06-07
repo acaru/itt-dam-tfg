@@ -63,6 +63,8 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
     private CheckBox tieneUsuario;
     private TextView txtUsuario;
     private ImageButton btnVolver;
+    private List<String> horasDeArray=  new ArrayList();
+    private List<String> finalHorasDeArray;
 
 
     //oncreateview se ejecuta cuando se crea el elemento
@@ -194,7 +196,7 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                     DateFormat format2=new SimpleDateFormat("EEEE");
                     String finalDay=format2.format(dt1);
                     //reincia el array de las horas
-                    List<String> horasDeArray=null;
+                    //List<String> horasDeArray=null;
                     String[] horas=null;
                     //switch encargado de obtener la fecha de la peluqueria apartir del dia seleccionado
                     switch (finalDay){
@@ -261,7 +263,8 @@ public class NewCitaPeluqueriaActivity extends AppCompatActivity {
                         }
                     }
                     //se encarga de revisar todas las citas que esten no finalizadas para que no hayan mas de 2 personas en la misma hora y mismo dia
-                    List<String> finalHorasDeArray = horasDeArray;
+                    //List<String> finalHorasDeArray = horasDeArray;
+                    finalHorasDeArray = horasDeArray;
                     dbF.collection("peluqueria/"+Peluqueria.Id+"/cita").whereEqualTo("dia",selectedDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
