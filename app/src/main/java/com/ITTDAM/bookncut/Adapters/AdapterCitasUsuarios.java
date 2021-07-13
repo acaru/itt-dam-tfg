@@ -46,7 +46,7 @@ public class AdapterCitasUsuarios extends ListAdapter<CitasUsuario,AdapterCitasU
         //holder es la view adaptada y diahora es un textview declarado en la clase viewholder, le setea el texto de al textview del dia y la hora de la cita en la peluqueria
         holder.diahora.setText("El "+citasUsuario.getDia()+" a las "+citasUsuario.getHora()+" horas");
         //holder es la view adaptada y servicio es un textview declarado en la clase viewholder, le setea el texto de al textview del servicio de la cita en la peluqueria
-        holder.servicio.setText("Se hara "+citasUsuario.getServicio());
+        holder.servicio.setText("Se hará "+citasUsuario.getServicio());
         if(!isSearchList)// si no es una lista de busqueda añade le onclick al item del recyclerview
             holder.baseview.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -131,31 +131,40 @@
                 android:inputType="textPersonName"
                 android:popupBackground="@color/white" />
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/customborder"
-                android:onClick="modificarProducto"
-                android:text="@string/modificar"
-                android:textColor="@color/azulOpacoPers"
-                app:backgroundTint="@color/white"
-                app:backgroundTintMode="add" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="35dp"
-                android:background="@drawable/customborder"
-                android:onClick="borrarProducto"
-                android:text="@string/borrar"
-                app:backgroundTint="#E91E63"
-                app:backgroundTintMode="add" />
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/customborder"
+                    android:onClick="modificarProducto"
+                    android:text="@string/modificar"
+                    android:textColor="@color/azulOpacoPers"
+                    app:backgroundTint="@color/white"
+                    app:backgroundTintMode="add" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/customborder"
+                    android:onClick="borrarProducto"
+                    android:text="@string/borrar"
+                    app:backgroundTint="#E91E63"
+                    app:backgroundTintMode="add" />
+            </TableRow>
+
         </LinearLayout>
 
     </LinearLayout>
